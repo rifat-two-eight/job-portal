@@ -34,20 +34,24 @@ export default function signUpQuesPage() {
             <h2 className="text-4xl text-[#123499] font-semibold text-center mb-5">Are You a Job Seeker or a Recruiter?</h2>
             <p className="text-center font-medium text-[#2F2F2F]">Get started by choosing your role.</p>
              
-             <div className="flex justify-center gap-8 mt-5 bg-[#FEF3E6] border-2 border-[#FCB676] p-6 rounded-xl items-center">
+             <Link href="/auth/register">
+                <div className="flex justify-center gap-8 mt-5 bg-[#FEF3E6] border-2 border-[#FCB676] p-6 rounded-xl items-center">
                 <Image src="/girlanim.svg" alt="Girl Animation" width={80} height={80} />
                 <div className="space-y-2">
                     <h2 className="text-[#FF8F27] text-xl font-semibold">Job Seekers</h2>
                     <p className="font-medium">Finding a job here never been easier than before</p>
                 </div>
              </div>
-             <div className="flex justify-center gap-8 mt-5 bg-[#FFFFFF] p-6 rounded-xl items-center">
+             </Link>
+             <Link href="/auth/register">
+                <div className="flex justify-center gap-8 mt-5 bg-[#FFFFFF] p-6 rounded-xl items-center">
                 <Image src="/boyanim.svg" alt="Boy Animation" width={80} height={80} />
                 <div className="space-y-2">
                     <h2 className="text-[#147FC7] text-xl font-semibold">Recruiter</h2>
                     <p className="font-medium">Let’s recruit your great candidate faster here </p>
                 </div>
              </div>
+             </Link>
 
              
           </div>

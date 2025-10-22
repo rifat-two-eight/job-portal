@@ -8,8 +8,11 @@ import Image from "next/image";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState(""); 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -32,7 +35,7 @@ export default function LoginPage() {
           {/* Left Side - Logo Section */}
           <div className="hidden md:flex flex-col items-center justify-center p-8">
             <Image 
-              src="/authlogo.svg" 
+              src="/register.svg" 
               alt="Jobarman Logo"
               width={425}
               height={585}
@@ -42,9 +45,22 @@ export default function LoginPage() {
 
           {/* Right Side - Login Form */}
           <div className="flex flex-col justify-center p-8 text-center md:text-left border-2 border-[#ACBDF0] rounded-lg">
-            <h2 className="text-4xl text-[#123499] font-semibold text-center mb-8">Log In</h2>
+            <h2 className="text-4xl text-[#123499] font-semibold text-center mb-8">Registration</h2>
 
             <form onSubmit={handleLogin} className="space-y-6">
+                {/* Name */}
+              <div>
+                <label className="block text-gray-700 mb-2">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Atiqur Rifat"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                  required
+                />
+              </div>
+
               {/* Email Field */}
               <div>
                 <label className="block text-gray-700 mb-2">Email</label>
@@ -80,6 +96,29 @@ export default function LoginPage() {
                 </div>
               </div>
 
+
+              {/* Confirm Password Field */}
+              <div>
+                <label className="block text-gray-700 mb-2">Confirm Password</label>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="••••••••••••••"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition pr-12"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#123499] transition"
+                  >
+                    {showConfirmPassword ? <Eye className="w-7 h-7" /> : <EyeOff className="w-7 h-7" />}
+                  </button>
+                </div>
+              </div>
+
               {/* Forgot Password Link */}
               <div className="text-right">
                 <Link href="/forgot-password" className="text-[#21419F] hover:text-blue-800 font-medium transition">
@@ -99,9 +138,9 @@ export default function LoginPage() {
             {/* Sign Up Link */}
             <div className="mt-6 text-center">
               <p className="text-gray-700">
-                Don't Have An Account?{" "}
-                <Link href="/auth/signupques" className="text-[#21419F] hover:text-blue-800 font-bold transition">
-                  Sign Up
+                Already Have An Account?{" "}
+                <Link href="/auth/login" className="text-[#21419F] hover:text-blue-800 font-bold transition">
+                  Sign In
                 </Link>
               </p>
             </div>
