@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -14,15 +14,15 @@ export default function LoginPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState(""); 
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
+    console.log("Registration attempt:", { name, email, password, confirmPassword });
   };
 
   return (
     <div className="min-h-screen bg-[#FBFBFB] flex items-center justify-center p-4">
       {/* Back Button */}
-      <Link href="/" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
+      <Link href="/auth/signupques" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
         <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
@@ -43,11 +43,11 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Right Side - Login Form */}
-          <div className="flex flex-col justify-center p-8 text-center md:text-left border-2 border-[#ACBDF0] rounded-lg">
+          {/* Right Side - Registration Form */}
+          <div className="flex flex-col w-[617px] justify-center p-8 text-center md:text-left border-2 border-[#ACBDF0] rounded-lg">
             <h2 className="text-4xl text-[#123499] font-semibold text-center mb-8">Registration</h2>
 
-            <form onSubmit={handleLogin} className="space-y-6">
+            <form onSubmit={handleRegister} className="space-y-6">
                 {/* Name */}
               <div>
                 <label className="block text-gray-700 mb-2">Full Name</label>
@@ -119,19 +119,28 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Forgot Password Link */}
-              <div className="text-right">
-                <Link href="/forgot-password" className="text-[#21419F] hover:text-blue-800 font-medium transition">
-                  Forgot Password?
-                </Link>
+              {/* Checkbox */}
+              <div className="flex items-center mb-4">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className="mr-2 leading-tight"
+                  required
+                />
+                <label htmlFor="terms" className="text-sm">
+                  I agree to the{" "}
+                  <Link href="/terms" className="text-[#21419F] hover:text-blue-800 font-bold transition">
+                    Terms and Privacy Policy
+                  </Link>
+                </label>
               </div>
 
-              {/* Login Button */}
+              {/* Register Button */}
               <button
                 type="submit"
                 className="w-full bg-[#0F38B2] text-2xl hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition duration-200 transform hover:scale-105"
               >
-                Log In
+                Sign Up
               </button>
             </form>
 
