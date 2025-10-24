@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Kristin Watson",
+    "role": "Product Manager",
+    "rating": 5,
+    "text": "This platform made my job search so much easier. I applied to the best matching jobs in no time and landed interviews.",
+    "image": "/avatars/kristin.svg"
+  },
+  {
+    "name": "Savannah Nguyen",
+    "role": "UX Designer",
+    "rating": 5,
+    "text": "This Platform Made My Job Search So Much Easier. I Applied To The Best Matching Jobs In No Time And Landed My Dream Role!",
+    "image": "/avatars/savannah.svg"
+  },
+  {
+    "name": "Courtney Henry",
+    "role": "Account Officer",
+    "rating": 5,
+    "text": "Verified Profiles & Secure In Time and Ensures You Connect With The Right Candidates.",
+    "image": "/avatars/courtney.svg"
+  },
+  {
+    "name": "Floyd Miles",
+    "role": "Product Manager",
+    "rating": 5,
+    "text": "And Applying To Jobs Takes Just A Few Clicks.",
+    "image": "/avatars/floyd.svg"
+  },
+  {
+    "name": "Marvin McKinney",
+    "role": "Web Designer",
+    "rating": 5,
+    "text": "Hacking Applications Is A Game Changer. I Have Landed My Dream Job Within Days.",
+    "image": "/avatars/marvin.svg"
+  },
+  {
+    "name": "Esther Howard",
+    "role": "General Manager",
+    "rating": 5,
+    "text": "A Perfect Platform For Both Job Seekers And Recruiters. Highly Recommended For Anyone About Their Career Or Hiring Needs.",
+    "image": "/avatars/esther.svg"
+  },
+  {
+    "name": "Theresa Webb",
+    "role": "President of Sales",
+    "rating": 5,
+    "text": "As A Recruiter, I Appreciate The Verified Profiles & Secure In Time and Ensures You Connect With The Right Candidates.",
+    "image": "/avatars/theresa.svg"
+  },
+  {
+    "name": "Dionne Russell",
+    "role": "Marketing Coordinator",
+    "rating": 5,
+    "text": "Its Advanced Filters And Search Options Really Helped Me Find Jobs. And Applying To Jobs Takes Just A Few Clicks.",
+    "image": "/avatars/dionne.svg"
+  }
+]

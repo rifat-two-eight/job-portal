@@ -17,11 +17,38 @@ import {
   Facebook,
   Twitter,
   Linkedin,
+  UploadCloud,
+  PlusCircle,
+  BadgeCheck,
+  UserPlus,
+  Medal,
+  Crown,
+  Award,
+  Building2,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import JobCategoryCard from "./components/shared/CategoryCard";
+import Link from "next/link";
+import ReviewCard from "./components/shared/ReviewCard";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await fetch("/testimonials.json");
+        if (!res.ok) return;
+        const data = await res.json();
+        setReviews(data);
+      } catch (e) {
+        // silent fail
+      }
+    };
+    load();
+  }, []);
 
   const jobCategories = [
     { icon: Stethoscope, label: "Healthcare", count: "2.5k jobs" },
@@ -32,85 +59,36 @@ export default function Home() {
     { icon: UtensilsCrossed, label: "Restaurant", count: "1.2k jobs" },
   ];
 
-  const testimonials = [
-    {
-      name: "Kristin Watson",
-      role: "Product Manager",
-      rating: 5,
-      text: "This platform made my job search so much easier. I applied to the best matching jobs in no time and landed interviews.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kristin",
-    },
-    {
-      name: "Savannah Nguyen",
-      role: "UX Designer",
-      rating: 5,
-      text: "This Platform Made My Job Search So Much Easier. I Applied To The Best Matching Jobs In No Time And Landed My Dream Role!",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Savannah",
-    },
-    {
-      name: "Courtney Henry",
-      role: "Account Officer",
-      rating: 5,
-      text: "Verified Profiles & Secure In Time and Ensures You Connect With The Right Candidates.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Courtney",
-    },
-    {
-      name: "Floyd Miles",
-      role: "Product Manager",
-      rating: 5,
-      text: "And Applying To Jobs Takes Just A Few Clicks.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Floyd",
-    },
-    {
-      name: "Marvin McKinney",
-      role: "Web Designer",
-      rating: 5,
-      text: "Hacking Applications Is A Game Changer. I Have Landed My Dream Job Within Days.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marvin",
-    },
-    {
-      name: "Esther Howard",
-      role: "General Manager",
-      rating: 5,
-      text: "A Perfect Platform For Both Job Seekers And Recruiters. Highly Recommended For Anyone About Their Career Or Hiring Needs.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Esther",
-    },
-    {
-      name: "Theresa Webb",
-      role: "President of Sales",
-      rating: 5,
-      text: "As A Recruiter, I Appreciate The Verified Profiles & Secure In Time and Ensures You Connect With The Right Candidates.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Theresa",
-    },
-    {
-      name: "Dionne Russell",
-      role: "Marketing Coordinator",
-      rating: 5,
-      text: "Its Advanced Filters And Search Options Really Helped Me Find Jobs. And Applying To Jobs Takes Just A Few Clicks.",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Dionne",
-    },
-  ];
+  // testimonials data moved to shared module: ./components/shared/testimonials
 
   const howItWorks = [
     {
-      step: "Step 1",
+      step: "Step-1",
       title: "Create Account",
-      description: "Sign up and build your professional profile in minutes",
+      description:
+        "Create Your Account To Access Personalized Job Matches, Build Your Profile, And Start Applying With Ease.",
+      icon: UserPlus,
     },
     {
-      step: "Step 2",
+      step: "Step-2",
       title: "Upload CV/Resume",
-      description: "Upload your resume and let AI analyze your skills",
+      description:
+        "Our AI Analyzes Your Experience And Skills To Identify The Best Job Opportunities For You.",
+      icon: UploadCloud,
     },
     {
-      step: "Step 3",
-      title: "Auto Apply",
-      description: "AI automatically applies to matching jobs for you",
+      step: "Step-3",
+      title: "Auto-Apply With AI",
+      description:
+        "Let AI Do The Hard Work: It Finds The Right Jobs, Matches Them To Your Skills, And Applies For You Automatically.",
+      icon: PlusCircle,
     },
     {
-      step: "Step 4",
-      title: "Resume Interview",
-      description: "Get interview tips and resume feedback from experts",
+      step: "Step-4",
+      title: "Receive Interviews",
+      description:
+        "Relax While Our AI Brings The Right Opportunities Your Way, Turning Applications Into Interviews.",
+      icon: BadgeCheck,
     },
   ];
 
@@ -191,9 +169,9 @@ export default function Home() {
             >
               FAQ
             </a>
-            <button className="px-6 py-2 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white rounded-lg transition">
+            <Link href="/auth/login" className="px-6 py-2 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white rounded-lg transition">
               Sign In
-            </button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -336,30 +314,23 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {jobCategories.map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <div
-                  key={index}
-                  className="border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center"
-                >
-                  <div className="w-16 h-16 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {category.label}
-                  </h3>
-                  <p className="text-sm text-gray-500">{category.count}</p>
-                </div>
-              );
-            })}
+            {jobCategories.map((category, index) => (
+              <JobCategoryCard
+                key={index}
+                icon={category.icon}
+                label={category.label}
+                count={category.count}
+              />
+            ))}
           </div>
 
           <div className="flex justify-center">
-            <button className="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium flex items-center gap-2">
-              Browse All
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <Link href="/allCategory">
+              <button className="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium flex items-center gap-2">
+                Browse All
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -382,42 +353,28 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div
+            {reviews.map((t, index) => (
+              <ReviewCard
                 key={index}
-                className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <img
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full"
-                  />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 text-sm">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">{testimonial.role}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-1 mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {testimonial.text}
-                </p>
-              </div>
+                name={t.name}
+                role={t.role}
+                rating={t.rating}
+                text={t.text}
+                image={t.image}
+              />
             ))}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Link href="/reviews">
+              <button className="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium">
+                View All Reviews
+              </button>
+            </Link>
           </div>
         </div>
       </section>
+
       {/* How it works at Jobarman */}
       <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -426,21 +383,34 @@ export default function Home() {
               How it works at Jobarman
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-balance">
-              Streamline your job search with our intelligent matching and smart
-              application management. From finding to landing.
+              Jobarman simplifies hiring with easy job posting, AI-powered
+              screening, and smart applicant management. From posting to
+              onboarding, everything happens seamlessly.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {howItWorks.map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                  {index + 1}
+              <div
+                key={index}
+                className="rounded-2xl p-6 sm:p-8 bg-rose-50 border border-rose-100 hover:shadow-md transition-shadow duration-300"
+              >
+                <p className="text-xs text-gray-500 mb-4">{item.step}</p>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-[#123499] text-white flex items-center justify-center mb-4">
+                    {item.icon ? (
+                      <item.icon className="w-8 h-8" />
+                    ) : (
+                      <Star className="w-8 h-8" />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#123499] mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
               </div>
             ))}
           </div>
@@ -489,194 +459,69 @@ export default function Home() {
             {subscriptionPlans.map((plan, index) => (
               <div
                 key={index}
-                className={`rounded-lg p-8 transition-all duration-300 ${
-                  plan.highlighted
-                    ? "bg-blue-600 text-white shadow-xl scale-105"
-                    : "bg-gray-50 border border-gray-200 text-gray-900"
-                }`}
+                className="relative rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm flex flex-col"
               >
-                <h3
-                  className={`text-2xl font-bold mb-2 ${
-                    plan.highlighted ? "text-white" : "text-gray-900"
-                  }`}
+                {/* Top badge icon */}
+                <div
+                  className={`absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-md ring-2 ${
+                    plan.name === "Free" ? "ring-blue-300" : "ring-orange-300"
+                  } flex items-center justify-center`}
                 >
-                  {plan.name}
-                </h3>
-                <div className="mb-6">
-                  <span
-                    className={`text-4xl font-bold ${
-                      plan.highlighted ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {plan.price}
-                  </span>
-                  <span
-                    className={`text-sm ml-2 ${
-                      plan.highlighted ? "text-blue-100" : "text-gray-600"
-                    }`}
-                  >
-                    {plan.period}
-                  </span>
+                  {plan.name === "Free" ? (
+                    <Building2 className="w-5 h-5 text-[#123499]" />
+                  ) : plan.name === "Pro" ? (
+                    <Award className="w-5 h-5 text-[#123499]" />
+                  ) : (
+                    <Crown className="w-5 h-5 text-[#123499]" />
+                  )}
                 </div>
 
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <CheckCircle
-                        className={`w-5 h-5 ${
-                          plan.highlighted ? "text-blue-100" : "text-blue-600"
-                        }`}
-                      />
-                      <span
-                        className={`text-sm ${
-                          plan.highlighted ? "text-blue-50" : "text-gray-600"
-                        }`}
-                      >
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Header with price */}
+                <div className="bg-gradient-to-r from-[#1D4ED8] to-[#1E3A8A] text-white px-8 pt-8 pb-6 text-center">
+                  <div className="flex items-baseline justify-center gap-2">
+                    <span className="text-5xl font-bold">{plan.price}</span>
+                    {plan.name === "Free" ? (
+                      <span className="text-sm opacity-90">/ Free Plan (Starter)</span>
+                    ) : (
+                      <span className="text-sm opacity-90">/month</span>
+                    )}
+                  </div>
+                </div>
 
-                <button
-                  className={`w-full py-3 rounded-lg font-semibold transition ${
-                    plan.highlighted
-                      ? "bg-white text-blue-600 hover:bg-gray-100"
-                      : "bg-blue-600 text-white hover:bg-blue-700"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
+                {/* Features */}
+                <div className="px-8 py-6">
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5" />
+                        <span className="text-sm text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Bottom accent strip */}
+                <div className="bg-blue-50 border-t border-blue-100 h-14" />
+
+                {/* Footer CTA */}
+                <div className="px-8 pb-6">
+                  <button
+                    className={`w-full py-3 rounded-md font-semibold transition ${
+                      plan.name === "Free"
+                        ? "bg-blue-50 text-[#123499] border border-blue-300 hover:bg-blue-100"
+                        : "bg-[#123499] text-white hover:bg-blue-700"
+                    }`}
+                  >
+                    {plan.cta}
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <footer className="bg-blue-900 text-gray-300 py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-            <div>
-              <h3 className="text-white font-bold text-lg mb-4">Jobarman</h3>
-              <p className="text-sm text-gray-400">
-                Your AI-powered job matching platform connecting talent with
-                opportunity.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Jobs
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Press
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Cookie Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Get Mobile App</h4>
-              <div className="space-y-3">
-                <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition text-sm">
-                  <Apple className="w-4 h-4" />
-                  App Store
-                </button>
-                <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition text-sm">
-                  <Zap className="w-4 h-4" />
-                  Google Play
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 pt-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-gray-400">
-                &copy; 2025 Jobarman. All rights reserved.
-              </p>
-              <div className="flex gap-4">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition"
-                >
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition"
-                >
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
