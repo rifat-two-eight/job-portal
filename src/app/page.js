@@ -145,30 +145,30 @@ export default function Home() {
           <img src="/logo.png" alt="Jobarman" className="w-24 h-12" />
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-8 items-center">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="text-gray-600 hover:text-gray-900 transition"
             >
               Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/jobs"
               className="text-gray-600 hover:text-gray-900 transition"
             >
               Jobs
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/pricing"
               className="text-gray-600 hover:text-gray-900 transition"
             >
               Pricing
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/faq"
               className="text-gray-600 hover:text-gray-900 transition"
             >
               FAQ
-            </a>
+            </Link>
             <Link href="/auth/login" className="px-6 py-2 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white rounded-lg transition">
               Sign In
             </Link>
