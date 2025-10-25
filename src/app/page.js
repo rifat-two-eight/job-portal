@@ -9,19 +9,11 @@ import {
   UtensilsCrossed,
   ArrowRight,
   CheckCircle,
-  Menu,
-  X,
   FileText,
-  Zap,
-  Apple,
-  Facebook,
-  Twitter,
-  Linkedin,
   UploadCloud,
   PlusCircle,
   BadgeCheck,
   UserPlus,
-  Medal,
   Crown,
   Award,
   Building2,
@@ -30,10 +22,8 @@ import { useState, useEffect } from "react";
 import JobCategoryCard from "./components/shared/CategoryCard";
 import Link from "next/link";
 import ReviewCard from "./components/shared/ReviewCard";
-import Footer from "./components/Footer";
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -140,77 +130,6 @@ export default function Home() {
 
   return (
     <main className="w-full bg-white">
-      <header className="border-b border-gray-200 sticky top-0 bg-white z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <img src="/logo.png" alt="Jobarman" className="w-24 h-12" />
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-8 items-center">
-            <Link
-              href="/"
-              className="text-gray-600 hover:text-gray-900 transition"
-            >
-              Home
-            </Link>
-            <Link
-              href="/jobs"
-              className="text-gray-600 hover:text-gray-900 transition"
-            >
-              Jobs
-            </Link>
-            <Link
-              href="/pricing"
-              className="text-gray-600 hover:text-gray-900 transition"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/faq"
-              className="text-gray-600 hover:text-gray-900 transition"
-            >
-              FAQ
-            </Link>
-            <Link href="/auth/login" className="px-6 py-2 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white rounded-lg transition">
-              Sign In
-            </Link>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white">
-            <nav className="flex flex-col gap-4 px-4 py-4">
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                Home
-              </a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                Jobs
-              </a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                Pricing
-              </a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">
-                FAQ
-              </a>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full">
-                Sign In
-              </button>
-            </nav>
-          </div>
-        )}
-      </header>
-
       <section className="py-12 sm:py-20 bg-gradient-to-b from-blue-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -481,7 +400,9 @@ export default function Home() {
                   <div className="flex items-baseline justify-center gap-2">
                     <span className="text-5xl font-bold">{plan.price}</span>
                     {plan.name === "Free" ? (
-                      <span className="text-sm opacity-90">/ Free Plan (Starter)</span>
+                      <span className="text-sm opacity-90">
+                        / Free Plan (Starter)
+                      </span>
                     ) : (
                       <span className="text-sm opacity-90">/month</span>
                     )}
@@ -520,8 +441,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }
