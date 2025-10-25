@@ -22,7 +22,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-[#FBFBFB] flex items-center justify-center p-4">
       {/* Back Button */}
-      <Link href="/auth/signupques" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
+      <Link href="/signupques" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
         <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
@@ -148,7 +148,7 @@ export default function RegisterPage() {
             <div className="mt-6 text-center">
               <p className="text-gray-700">
                 Already Have An Account?{" "}
-                <Link href="/auth/login" className="text-[#21419F] hover:text-blue-800 font-bold transition">
+                <Link href="/login" className="text-[#21419F] hover:text-blue-800 font-bold transition">
                   Sign In
                 </Link>
               </p>

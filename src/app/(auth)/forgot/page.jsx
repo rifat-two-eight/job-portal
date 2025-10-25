@@ -11,7 +11,7 @@ export default function ForgotPage() {
   return (
     <div className="min-h-screen bg-[#FBFBFB] flex items-center justify-center p-4">
       {/* Back Button */}
-      <Link href="/auth/login" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
+      <Link href="/login" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
         <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
@@ -53,7 +53,7 @@ export default function ForgotPage() {
 
 
               {/* Login Button */}
-              <Link href="/auth/otp">
+              <Link href="/otp">
                 <button
                   type="submit"
                   className="w-full bg-[#0F38B2] text-2xl hover:bg-blue-700 text-white font-semibold py-4 rounded-lg mt-6 transition duration-200 transform hover:scale-105"

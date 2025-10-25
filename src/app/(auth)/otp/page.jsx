@@ -35,7 +35,7 @@ export default function OTPPage() {
   return (
     <div className="min-h-screen bg-[#FBFBFB] flex items-center justify-center p-4">
       {/* Back Button */}
-      <Link href="/auth/forgot" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
+      <Link href="/forgot" className="absolute top-10 left-20 text-gray-600 hover:text-gray-900 transition">
         <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
@@ -91,7 +91,7 @@ export default function OTPPage() {
               </p>
 
               {/* Submit Button */}
-              <Link href="/auth/setnewpass">
+              <Link href="/setnewpass">
                 <button
                 type="submit"
                 className="w-full bg-[#123499] hover:bg-[#0F38B2] text-white font-semibold py-4 mt-4 rounded-lg transition duration-200 transform hover:scale-105"

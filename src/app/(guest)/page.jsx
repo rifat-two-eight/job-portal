@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -19,9 +20,14 @@ import {
   Building2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import JobCategoryCard from "./components/shared/CategoryCard";
+
 import Link from "next/link";
-import ReviewCard from "./components/shared/ReviewCard";
+
+
+import ReviewCard from "@/components/shared/ReviewCard";
+import JobCategoryCard from "@/components/shared/JobCategoryCard";
+
+
 
 export default function Home() {
   const [reviews, setReviews] = useState([]);
