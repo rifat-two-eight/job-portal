@@ -52,7 +52,7 @@ export default function Navbar() {
           >
             <Bell className="w-5 h-5" />
           </Link>
-          <Link href="/auth/login" className={btnClass("/auth/login")}>
+          <Link href="/login" className={btnClass("/login")}>
             Sign In
           </Link>
         </nav>
@@ -90,9 +90,9 @@ export default function Navbar() {
               Notifications
             </Link>
             <Link
-              href="/auth/login"
+              href="/login"
               className={`${
-                pathname === "/auth/login" ? "bg-[#123499]" : "bg-blue-600"
+                pathname === "/login" ? "bg-[#123499]" : "bg-blue-600"
               } px-6 py-2 text-white rounded-lg hover:bg-blue-700 transition w-full`}
             >
               Sign In
