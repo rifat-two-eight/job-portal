@@ -1,26 +1,28 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Heart, FileText, Star, Settings, LogOut, X, Lock, HelpCircle, Trash2, User } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import { Heart, FileText, Star, Settings, LogOut, X, Lock, HelpCircle, Trash2, User, MapPin } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function ProfilePage() {
-  const [activeMenu, setActiveMenu] = useState("My Profile") // Track active menu item
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false) // Track Settings submenu toggle
+  const [activeMenu, setActiveMenu] = useState("My Profile"); // Track active menu item
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false); // Track Settings submenu toggle
+  const pathname = usePathname(); // Get the current route
 
   const menuItems = [
-    { icon: User, label: "My Profile" },
-    { icon: Heart, label: "Favorite List" },
-    { icon: FileText, label: "Payment History" },
-    { icon: Star, label: "Platform Review" },
+    { icon: User, label: "My Profile", path: "/profile/myProfile" },
+    { icon: Heart, label: "Favorite List", path: "/profile/favourite" }, // Updated to match /profile/favourite
+    { icon: FileText, label: "Payment History", path: "/profile/paymentHistory" },
+    { icon: Star, label: "Platform Review", path: "/profile/platformReview" },
     { icon: Settings, label: "Settings", subItems: [
-      { icon: Lock, label: "Change Password" },
-      { icon: HelpCircle, label: "Help and Support" },
-      { icon: Trash2, label: "Delete Account" },
+      { icon: Lock, label: "Change Password", path: "/profile/settings/changePassword" },
+      { icon: HelpCircle, label: "Help and Support", path: "/profile/settings/helpSupport" },
+      { icon: Trash2, label: "Delete Account", path: "/profile/settings/deleteAccount" },
     ]},
-    { icon: LogOut, label: "Log Out" },
-  ]
+    { icon: LogOut, label: "Log Out", path: "/logout" },
+  ];
 
   const infoItems = [
     { label: "Gender", value: "Male" },
@@ -31,7 +33,7 @@ export default function ProfilePage() {
     { label: "Mobile", value: "+99123456789" },
     { label: "Email", value: "User@Gmail.Com" },
     { label: "LinkedIn", value: "LinkedIn.Com/Profile" },
-  ]
+  ];
 
   const educations = [
     {
@@ -48,7 +50,7 @@ export default function ProfilePage() {
       passingYear: "Passing Year: 2025",
       gpa: "Grade Point: GPA 5.00",
     },
-  ]
+  ];
 
   const experiences = [
     {
@@ -63,18 +65,34 @@ export default function ProfilePage() {
       period: "2024-Present",
       description: "Designing Mobile & Web Apps With Developers For Smooth, User-Friendly Experiences.",
     },
-  ]
+  ];
 
-  const skills = ["Figma", "UX Design", "Website"]
+  const skills = ["Figma", "UX Design", "Website"];
+
+  // Update activeMenu based on the current route
+  useEffect(() => {
+    const currentPath = pathname;
+    const matchingItem = menuItems.find((item) =>
+      item.path === currentPath || (item.subItems && item.subItems.some((sub) => sub.path === currentPath))
+    );
+    if (matchingItem) {
+      setActiveMenu(matchingItem.label);
+      if (matchingItem.label === "Settings") {
+        setIsSettingsOpen(true);
+      } else {
+        setIsSettingsOpen(false);
+      }
+    }
+  }, [pathname]);
 
   const handleMenuClick = (label) => {
     if (label === "Settings") {
-      setIsSettingsOpen(!isSettingsOpen)
+      setIsSettingsOpen(!isSettingsOpen);
     } else {
-      setActiveMenu(label)
-      setIsSettingsOpen(false) // Close settings submenu if another item is clicked
+      setActiveMenu(label);
+      setIsSettingsOpen(false); // Close settings submenu if another item is clicked
     }
-  }
+  };
 
   return (
     <div className="w-full bg-[#FBFBFB]">
@@ -98,31 +116,34 @@ export default function ProfilePage() {
           <nav className="space-y-2 flex-1">
             {menuItems.map((item, index) => (
               <div key={index}>
-                <button
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left ${
-                    activeMenu === item.label ? "bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white" : ""
-                  }`}
-                  onClick={() => handleMenuClick(item.label)}
-                >
-                  <item.icon className={`w-5 h-5 ${activeMenu === item.label ? "text-white" : "text-black"}`} />
-                  <span className="text-sm font-medium">{item.label}</span>
-                  {item.label === "Settings" && (
-                    <span className="ml-auto text-gray-400">{isSettingsOpen ? "⌄" : "›"}</span>
-                  )}
-                </button>
+                <Link href={item.path || "#"}>
+                  <button
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left ${
+                      activeMenu === item.label ? "bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white" : ""
+                    }`}
+                    onClick={() => handleMenuClick(item.label)}
+                  >
+                    <item.icon className={`w-5 h-5 ${activeMenu === item.label ? "text-white" : "text-black"}`} />
+                    <span className="text-sm font-medium">{item.label}</span>
+                    {item.label === "Settings" && (
+                      <span className="ml-auto text-gray-400">{isSettingsOpen ? "⌄" : "›"}</span>
+                    )}
+                  </button>
+                </Link>
                 {item.label === "Settings" && isSettingsOpen && (
                   <div className="ml-6 mt-2 space-y-2">
                     {item.subItems.map((subItem, subIndex) => (
-                      <button
-                        key={subIndex}
-                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left ${
-                          activeMenu === subItem.label ? "bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white" : ""
-                        }`}
-                        onClick={() => setActiveMenu(subItem.label)}
-                      >
-                        <subItem.icon className={`w-5 h-5 ${activeMenu === subItem.label ? "text-white" : "text-black"}`} />
-                        <span className="text-sm font-medium">{subItem.label}</span>
-                      </button>
+                      <Link key={subIndex} href={subItem.path}>
+                        <button
+                          className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left ${
+                            activeMenu === subItem.label ? "bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white" : ""
+                          }`}
+                          onClick={() => setActiveMenu(subItem.label)}
+                        >
+                          <subItem.icon className={`w-5 h-5 ${activeMenu === subItem.label ? "text-white" : "text-black"}`} />
+                          <span className="text-sm font-medium">{subItem.label}</span>
+                        </button>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -146,11 +167,8 @@ export default function ProfilePage() {
                     <div key={index} className="flex justify-between items-center mb-4 last:mb-0">
                       <label className="text-sm font-medium text-gray-600">{item.label}</label>
                       <p className="text-gray-600 font-medium">{item.value}</p>
-                      
                     </div>
-                    
                   ))}
-                  
                 </div>
 
                 {/* Personal Information - Group 2 */}
@@ -243,5 +261,5 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
