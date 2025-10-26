@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { EllipsisVertical } from "lucide-react";
 import FilePreview from "./FilePreview";
@@ -37,8 +38,8 @@ const ChatMessages = ({
                                 <div className="relative group max-w-[80%] sm:max-w-[60%]">
                                     <div
                                         className={`p-3 rounded-lg shadow-sm ${msg.sender === "user"
-                                                ? "bg-blue-500 text-white rounded-br-none"
-                                                : "bg-gray-200 text-gray-800 rounded-bl-none"
+                                            ? "bg-blue-500 text-white rounded-br-none"
+                                            : "bg-gray-200 text-gray-800 rounded-bl-none"
                                             }`}
                                     >
                                         {msg.text && <p className="break-words">{msg.text}</p>}

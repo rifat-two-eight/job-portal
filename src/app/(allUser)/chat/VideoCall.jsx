@@ -1,4 +1,6 @@
-/* eslint-disable react-hooks/immutability */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
