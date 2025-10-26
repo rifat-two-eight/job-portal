@@ -19,7 +19,7 @@ export default function CompanyChangePasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState("")
 
   const menuItems = [
-    { icon: User, label: "Company Profile", href: "/profile/recruiterProfile" },
+    { icon: User, label: "Company Profile", href: "/profile/companyProfile" },
     {
       icon: Settings,
       label: "Settings",

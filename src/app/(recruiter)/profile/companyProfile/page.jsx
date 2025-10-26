@@ -14,7 +14,7 @@ export default function CompanyProfilePage() {
   const pathname = usePathname()
 
   const menuItems = [
-    { icon: User, label: "Company Profile", path: "/profile/recruiterProfile" },
+    { icon: User, label: "Company Profile", path: "/profile/companyProfile" },
     {
       icon: Settings,
       label: "Settings",
