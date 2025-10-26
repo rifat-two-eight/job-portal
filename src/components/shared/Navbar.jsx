@@ -70,6 +70,11 @@ export default function Navbar() {
             History
           </Link>
 
+          {/* ✅ My Resume Route Added */}
+          <Link href="/my-resume" className={linkClass("/my-resume")}>
+            My Resume
+          </Link>
+
           <Link
             href="/notifications"
             aria-label="Notifications"
@@ -163,11 +168,16 @@ export default function Navbar() {
               History
             </Link>
 
+            {/* ✅ My Resume Added in Mobile Menu */}
+            <Link href="/my-resume" className={linkClass("/my-resume")}>
+              My Resume
+            </Link>
+
             {/* Mobile Notifications & Messages */}
             <Link href="/notifications" className={linkClass("/notifications")}>
               Notifications
             </Link>
-            <Link href="/chat" className={linkClass("/messages")}>
+            <Link href="/chat" className={linkClass("/chat")}>
               Messages
             </Link>
 
