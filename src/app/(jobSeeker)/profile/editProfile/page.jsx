@@ -7,14 +7,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function EditProfilePage() {
-  const [activeMenu, setActiveMenu] = useState("My Profile");
+  const [activeMenu, setActiveMenu] = useState("Edit Profile"); // Default to Edit Profile
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [currentlyWorking, setCurrentlyWorking] = useState(false);
   const pathname = usePathname(); // Get the current route
 
   const menuItems = [
     { icon: User, label: "My Profile", path: "/profile/myProfile" },
-    { icon: Heart, label: "Favorite List", path: "/profile/favorite" },
+    { icon: Heart, label: "Favorite List", path: "/profile/favourite" }, // Updated to /profile/favourite
     { icon: FileText, label: "Payment History", path: "/profile/paymentHistory" },
     { icon: Star, label: "Platform Review", path: "/profile/platformReview" },
     { icon: Settings, label: "Settings", subItems: [
@@ -40,6 +40,8 @@ export default function EditProfilePage() {
       } else {
         setIsSettingsOpen(false);
       }
+    } else if (currentPath === "/profile/editProfile") {
+      setActiveMenu("Edit Profile"); // Custom label for Edit Profile page
     }
   }, [pathname]);
 
@@ -63,6 +65,7 @@ export default function EditProfilePage() {
         <Link href="/profile/myProfile">
           <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6">
             <ArrowLeft className="w-5 h-5" />
+           {/* Added text for clarity */}
           </button>
         </Link>
       </div>
@@ -89,11 +92,11 @@ export default function EditProfilePage() {
                 <Link href={item.path || "#"}>
                   <button
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left ${
-                      activeMenu === item.label ? "bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white" : ""
+                      activeMenu === item.label || (activeMenu === "Edit Profile" && item.label === "My Profile") ? "bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white" : ""
                     }`}
                     onClick={() => handleMenuClick(item.label)}
                   >
-                    <item.icon className={`w-5 h-5 ${activeMenu === item.label ? "text-white" : "text-black"}`} />
+                    <item.icon className={`w-5 h-5 ${activeMenu === item.label || (activeMenu === "Edit Profile" && item.label === "My Profile") ? "text-white" : "text-black"}`} />
                     <span className="text-sm font-medium">{item.label}</span>
                     {item.label === "Settings" && (
                       <span className="ml-auto text-gray-400">{isSettingsOpen ? "⌄" : "›"}</span>
@@ -231,7 +234,7 @@ export default function EditProfilePage() {
               </div>
 
               {/* Education Qualification Section */}
-              <div className="bg-white rounded-lg ">
+              <div className="bg-white rounded-lg">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Educational Qualification</h3>
                 
                 <div className="grid grid-cols-3 gap-4 mb-4">
