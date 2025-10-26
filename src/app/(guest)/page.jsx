@@ -32,6 +32,7 @@ import Link from "next/link";
 
 import ReviewCard from "@/components/shared/ReviewCard";
 import JobCategoryCard from "@/components/shared/JobCategoryCard";
+import SubscriptionCard from "@/components/shared/SubscriptionCard";
 
 const recentJobs = [
   {
@@ -329,7 +330,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Search Section below Hero */}
       <section className="py-6 sm:py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -368,7 +368,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* AI Banner Carousel below Hero */}
       <section className="py-6 sm:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -392,8 +391,15 @@ export default function Home() {
                   className="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                   {group.map((s, i) => (
-                    <div key={`${pageIndex}-${i}`} className="bg-white rounded-xl shadow-sm border overflow-hidden">
-                      <img src={s.src} alt={s.alt} className="w-full h-40 sm:h-48 object-cover" />
+                    <div
+                      key={`${pageIndex}-${i}`}
+                      className="bg-white rounded-xl shadow-sm border overflow-hidden"
+                    >
+                      <img
+                        src={s.src}
+                        alt={s.alt}
+                        className="w-full h-40 sm:h-48 object-cover"
+                      />
                     </div>
                   ))}
                 </div>
@@ -407,33 +413,44 @@ export default function Home() {
                   key={i}
                   aria-label={`Go to slide ${i + 1}`}
                   onClick={() => setAiPage(i)}
-                  className={`w-2.5 h-2.5 rounded-full ${aiPage === i ? "bg-[#123499]" : "bg-gray-300"}`}
+                  className={`w-2.5 h-2.5 rounded-full ${
+                    aiPage === i ? "bg-[#123499]" : "bg-gray-300"
+                  }`}
                 />
               ))}
             </div>
           </div>
         </div>
       </section>
-
       {/* Who’s Hiring Right Now banner */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-xl overflow-hidden">
-            <img src="/company.jpg" alt="Hiring Now" className="w-full h-56 sm:h-64 object-cover" />
+            <img
+              src="/company.jpg"
+              alt="Hiring Now"
+              className="w-full h-56 sm:h-64 object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/40 to-orange-600/70" />
             <div className="absolute inset-y-0 right-0 w-full sm:w-1/2 flex flex-col justify-center p-6 sm:p-10 text-white">
-              <h2 className="text-2xl sm:text-4xl font-bold leading-tight text-balance">Who’s Hiring Right Now</h2>
-              <p className="mt-3 text-sm sm:text-base text-orange-100 text-balance">Discover Leading Organizations That Are Rapidly Expanding And Building Stronger Teams.</p>
+              <h2 className="text-2xl sm:text-4xl font-bold leading-tight text-balance">
+                Who’s Hiring Right Now
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-orange-100 text-balance">
+                Discover Leading Organizations That Are Rapidly Expanding And
+                Building Stronger Teams.
+              </p>
               <div className="mt-6">
                 <Link href="/jobs">
-                  <button className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-md font-semibold">Get Started</button>
+                  <button className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-md font-semibold">
+                    Get Started
+                  </button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Recent jobs data for home page cards
       const recentJobs = [
       {
@@ -479,218 +496,228 @@ export default function Home() {
       ];
       {/* Filters Modal */}
       {filtersOpen && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-      className="absolute inset-0 bg-black/40"
-      onClick={() => setFiltersOpen(false)}
-      />
-      <div className="relative bg-white w-[92%] max-w-md rounded-xl shadow-xl p-6">
-      <div className="flex items-center justify-between mb-4">
-      <h3 className="text-lg font-semibold">Filters</h3>
-      <button
-      onClick={() => setFiltersOpen(false)}
-      className="p-2 rounded-full hover:bg-gray-100"
-      >
-      <X className="w-4 h-4" />
-      </button>
-      </div>
-      
-      <div className="space-y-5">
-      {/* Category */}
-      <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-      Category
-      </label>
-      <select
-      value={category}
-      onChange={(e) => setCategory(e.target.value)}
-      className="w-full border rounded-lg px-3 py-2 text-sm"
-      >
-      <option>Sr. UI/UX Designer</option>
-      <option>Frontend Engineer</option>
-      <option>Backend Engineer</option>
-      <option>Product Designer</option>
-      </select>
-      </div>
-      
-      {/* Employee Type */}
-      <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-      Employee Type
-      </label>
-      <div className="flex gap-2">
-      {[
-      { label: "Full Time" },
-      { label: "Part Time" },
-      { label: "Intern" },
-      ].map((t) => (
-      <button
-      key={t.label}
-      type="button"
-      onClick={() => setEmployeeType(t.label)}
-      className={`px-4 py-2 rounded-md text-sm ${
-      employeeType === t.label
-      ? "bg-[#123499] text-white"
-      : "bg-gray-100 text-gray-700"
-      }`}
-      >
-      {t.label}
-      </button>
-      ))}
-      </div>
-      </div>
-      
-      {/* Job Type */}
-      <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-      Job Type
-      </label>
-      <div className="flex gap-2">
-      {[
-      { label: "Remote" },
-      { label: "Onsite" },
-      { label: "Hybrid" },
-      ].map((t) => (
-      <button
-      key={t.label}
-      type="button"
-      onClick={() => setJobType(t.label)}
-      className={`px-4 py-2 rounded-full text-sm ${
-      jobType === t.label
-      ? "bg-blue-600 text-white"
-      : "bg-gray-100 text-gray-700"
-      }`}
-      >
-      {t.label}
-      </button>
-      ))}
-      </div>
-      </div>
-      
-      {/* Salary Range */}
-      <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-      Salary Range
-      </label>
-      <div className="grid grid-cols-2 gap-3">
-      <div>
-      <span className="block text-xs text-gray-500 mb-1">
-      Min Salary
-      </span>
-      <input
-      type="text"
-      value={minSalary}
-      onChange={(e) => setMinSalary(e.target.value)}
-      className="w-full border rounded-lg px-3 py-2 text-sm"
-      placeholder="$5000"
-      />
-      </div>
-      <div>
-      <span className="block text-xs text-gray-500 mb-1">
-      Max Salary
-      </span>
-      <input
-      type="text"
-      value={maxSalary}
-      onChange={(e) => setMaxSalary(e.target.value)}
-      className="w-full border rounded-lg px-3 py-2 text-sm"
-      placeholder="$8000"
-      />
-      </div>
-      </div>
-      </div>
-      
-      {/* Distance */}
-      <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-      Distance
-      </label>
-      <input
-      type="range"
-      min={1}
-      max={20}
-      step={1}
-      value={distance}
-      onChange={(e) => setDistance(parseInt(e.target.value))}
-      className="w-full"
-      />
-      <div className="flex justify-between text-xs text-gray-500 mt-1">
-      <span>1km</span>
-      <span>{distance} km</span>
-      <span>20 Km</span>
-      </div>
-      </div>
-      </div>
-      
-      <button
-      type="button"
-      onClick={() => setFiltersOpen(false)}
-      className="w-full mt-5 bg-orange-500 text-white rounded-lg py-3 font-semibold"
-      >
-      Apply
-      </button>
-      </div>
-      </div>
-      )}
-      +
-      {/* Recent Job Post Section */}
-      <section className="py-16 sm:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-3 text-balance">
-      Recent Job Post
-      </h2>
-      <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8 text-balance">
-      Discover Jobs That Truly Match Your Skills And Goals. Connect With Top
-      Employers And Take The Next Step In Your Career Effortlessly.
-      </p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {recentJobs.map((job) => (
-      <div key={job.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex items-center gap-4">
-      <img src={job.image} alt={job.title} className="w-36 h-24 rounded-lg object-cover" />
-      <div className="flex-1">
-      <Link href={`/jobs/${job.id}`} className="text-gray-900 font-semibold hover:text-blue-600">
-      {job.title}
-      </Link>
-      <div className="text-sm mt-1">
-      <Link href="#" className="text-blue-600 hover:underline">{job.company}</Link>
-      </div>
-      <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
-      <MapPin className="w-4 h-4 text-gray-600" />
-      <span>{job.location}</span>
-      </div>
-      <div className="mt-2 flex items-center gap-4 text-sm">
-      <span className="flex items-center gap-2 text-gray-700">
-      <span className="w-2 h-2 bg-blue-600 rounded-full inline-block"></span>
-      {job.type}
-      </span>
-      <span className="flex items-center gap-2 text-gray-700">
-      <span className="w-2 h-2 bg-blue-600 rounded-full inline-block"></span>
-      {job.remote ? "Remote" : "Onsite"}
-      </span>
-      </div>
-      </div>
-      <div className="hidden sm:flex flex-col items-end">
-      <div className="flex items-center gap-1 text-orange-500 text-sm font-medium">
-      <Calendar className="w-4 h-4" />
-      {job.remaining}
-      </div>
-      </div>
-      </div>
-      ))}
-      </div>
-      
-      <div className="flex justify-center mt-8">
-      <Link href="/jobs">
-      <button className="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium flex items-center gap-2">
-      Brows All
-      <ArrowRight className="w-4 h-4" />
-      </button>
-      </Link>
-      </div>
-      </div>
-      </section>
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setFiltersOpen(false)}
+          />
+          <div className="relative bg-white w-[92%] max-w-md rounded-xl shadow-xl p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">Filters</h3>
+              <button
+                onClick={() => setFiltersOpen(false)}
+                className="p-2 rounded-full hover:bg-gray-100"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
 
+            <div className="space-y-5">
+              {/* Category */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Category
+                </label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                >
+                  <option>Sr. UI/UX Designer</option>
+                  <option>Frontend Engineer</option>
+                  <option>Backend Engineer</option>
+                  <option>Product Designer</option>
+                </select>
+              </div>
+
+              {/* Employee Type */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Employee Type
+                </label>
+                <div className="flex gap-2">
+                  {[
+                    { label: "Full Time" },
+                    { label: "Part Time" },
+                    { label: "Intern" },
+                  ].map((t) => (
+                    <button
+                      key={t.label}
+                      type="button"
+                      onClick={() => setEmployeeType(t.label)}
+                      className={`px-4 py-2 rounded-md text-sm ${
+                        employeeType === t.label
+                          ? "bg-[#123499] text-white"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Job Type */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Job Type
+                </label>
+                <div className="flex gap-2">
+                  {[
+                    { label: "Remote" },
+                    { label: "Onsite" },
+                    { label: "Hybrid" },
+                  ].map((t) => (
+                    <button
+                      key={t.label}
+                      type="button"
+                      onClick={() => setJobType(t.label)}
+                      className={`px-4 py-2 rounded-full text-sm ${
+                        jobType === t.label
+                          ? "bg-blue-600 text-white"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Salary Range */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Salary Range
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <span className="block text-xs text-gray-500 mb-1">
+                      Min Salary
+                    </span>
+                    <input
+                      type="text"
+                      value={minSalary}
+                      onChange={(e) => setMinSalary(e.target.value)}
+                      className="w-full border rounded-lg px-3 py-2 text-sm"
+                      placeholder="$5000"
+                    />
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500 mb-1">
+                      Max Salary
+                    </span>
+                    <input
+                      type="text"
+                      value={maxSalary}
+                      onChange={(e) => setMaxSalary(e.target.value)}
+                      className="w-full border rounded-lg px-3 py-2 text-sm"
+                      placeholder="$8000"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Distance */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Distance
+                </label>
+                <input
+                  type="range"
+                  min={1}
+                  max={20}
+                  step={1}
+                  value={distance}
+                  onChange={(e) => setDistance(parseInt(e.target.value))}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>1km</span>
+                  <span>{distance} km</span>
+                  <span>20 Km</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setFiltersOpen(false)}
+              className="w-full mt-5 bg-orange-500 text-white rounded-lg py-3 font-semibold"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      )}
+      +{/* Recent Job Post Section */}
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-3 text-balance">
+            Recent Job Post
+          </h2>
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8 text-balance">
+            Discover Jobs That Truly Match Your Skills And Goals. Connect With
+            Top Employers And Take The Next Step In Your Career Effortlessly.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {recentJobs.map((job) => (
+              <div
+                key={job.id}
+                className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex items-center gap-4"
+              >
+                <img
+                  src={job.image}
+                  alt={job.title}
+                  className="w-36 h-24 rounded-lg object-cover"
+                />
+                <div className="flex-1">
+                  <Link
+                    href={`/jobs/${job.id}`}
+                    className="text-gray-900 font-semibold hover:text-blue-600"
+                  >
+                    {job.title}
+                  </Link>
+                  <div className="text-sm mt-1">
+                    <Link href="#" className="text-blue-600 hover:underline">
+                      {job.company}
+                    </Link>
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
+                    <MapPin className="w-4 h-4 text-gray-600" />
+                    <span>{job.location}</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-4 text-sm">
+                    <span className="flex items-center gap-2 text-gray-700">
+                      <span className="w-2 h-2 bg-blue-600 rounded-full inline-block"></span>
+                      {job.type}
+                    </span>
+                    <span className="flex items-center gap-2 text-gray-700">
+                      <span className="w-2 h-2 bg-blue-600 rounded-full inline-block"></span>
+                      {job.remote ? "Remote" : "Onsite"}
+                    </span>
+                  </div>
+                </div>
+                <div className="hidden sm:flex flex-col items-end">
+                  <div className="flex items-center gap-1 text-orange-500 text-sm font-medium">
+                    <Calendar className="w-4 h-4" />
+                    {job.remaining}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Link href="/jobs">
+              <button className="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium flex items-center gap-2">
+                Brows All
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* Recent Job Request Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -698,8 +725,8 @@ export default function Home() {
             Recent Job Request
           </h2>
           <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8 text-balance">
-            Discover Jobs That Truly Match Your Skills And Goals. Connect With Top
-            Employers And Take The Next Step In Your Career Effortlessly.
+            Discover Jobs That Truly Match Your Skills And Goals. Connect With
+            Top Employers And Take The Next Step In Your Career Effortlessly.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -738,7 +765,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Job Categories Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -767,7 +793,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Social Proof Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -807,7 +832,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      {/* Resume Score Generator Section */}
       <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
@@ -849,7 +874,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* How it works at Jobarman */}
       <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -891,7 +915,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Are You Employer Section */}
       <section className="py-12 sm:py-20 bg-[#EFF5FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -921,7 +944,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      {/* Subscription Plan Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -932,67 +955,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {subscriptionPlans.map((plan, index) => (
-              <div
-                key={index}
-                className="relative rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm flex flex-col"
-              >
-                {/* Top badge icon */}
-                <div
-                  className={`absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-md ring-2 ${
-                    plan.name === "Free" ? "ring-blue-300" : "ring-orange-300"
-                  } flex items-center justify-center`}
-                >
-                  {plan.name === "Free" ? (
-                    <Building2 className="w-5 h-5 text-[#123499]" />
-                  ) : plan.name === "Pro" ? (
-                    <Award className="w-5 h-5 text-[#123499]" />
-                  ) : (
-                    <Crown className="w-5 h-5 text-[#123499]" />
-                  )}
-                </div>
-
-                {/* Header with price */}
-                <div className="bg-gradient-to-r from-[#1D4ED8] to-[#1E3A8A] text-white px-8 pt-8 pb-6 text-center">
-                  <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-5xl font-bold">{plan.price}</span>
-                    {plan.name === "Free" ? (
-                      <span className="text-sm opacity-90">
-                        / Free Plan (Starter)
-                      </span>
-                    ) : (
-                      <span className="text-sm opacity-90">/month</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Features */}
-                <div className="px-8 py-6">
-                  <ul className="space-y-3">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5" />
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Bottom accent strip */}
-                <div className="bg-blue-50 border-t border-blue-100 h-14" />
-
-                {/* Footer CTA */}
-                <div className="px-8 pb-6">
-                  <button
-                    className={`w-full py-3 rounded-md font-semibold transition ${
-                      plan.name === "Free"
-                        ? "bg-blue-50 text-[#123499] border border-blue-300 hover:bg-blue-100"
-                        : "bg-[#123499] text-white hover:bg-blue-700"
-                    }`}
-                  >
-                    {plan.cta}
-                  </button>
-                </div>
-              </div>
+              <SubscriptionCard key={index} plan={plan} />
             ))}
           </div>
         </div>
