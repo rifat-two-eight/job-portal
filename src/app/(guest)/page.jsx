@@ -15,9 +15,6 @@ import {
   PlusCircle,
   BadgeCheck,
   UserPlus,
-  Crown,
-  Award,
-  Building2,
   Zap,
   TrendingUp,
   Search,
@@ -224,51 +221,21 @@ export default function Home() {
     },
   ];
 
-  const subscriptionPlans = [
-    {
-      name: "Free",
-      price: "$0",
-      period: "per month",
-      features: [
-        "Browse job listings",
-        "Limited auto-apply (1–50)",
-        "Basic resume templates",
-        "No AI cover letters",
-        "No ATS score/analysis",
-      ],
-      cta: "Enable",
-      highlighted: false,
-    },
-    {
-      name: "Pro",
-      price: "$19.99",
-      period: "per month",
-      features: [
-        "Unlimited auto-apply",
-        "AI-generated cover letters",
-        "ATS analysis & optimization tips",
-        "Smart resume & cover letter builder",
-        "Application tracking dashboard",
-        "No Career Copilot or advanced analytics",
-      ],
-      cta: "Buy Now",
-      highlighted: true,
-    },
-    {
-      name: "Premium",
-      price: "$69.99",
-      period: "per month",
-      features: [
-        "Everything in Premium",
-        "AI Career Copilot (personalized career guidance, skill gap analysis, learning paths)",
-        "Recruiter visibility boost",
-        "Advanced analytics & insights (resume performance, recruiter engagement, job match score)",
-        "Priority support & early access to new features",
-      ],
-      cta: "Buy Now",
-      highlighted: false,
-    },
-  ];
+  const [subscriptionPlans, setSubscriptionPlans] = useState([]);
+
+  useEffect(() => {
+    const loadPlans = async () => {
+      try {
+        const res = await fetch("/subscription-plans.json");
+        if (!res.ok) return;
+        const data = await res.json();
+        setSubscriptionPlans(data);
+      } catch (e) {
+        // silent fail
+      }
+    };
+    loadPlans();
+  }, []);
 
   return (
     <main className="w-full bg-white">
@@ -833,7 +800,7 @@ export default function Home() {
         </div>
       </section>
       {/* Resume Score Generator Section */}
-      <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-600 to-blue-700">
+      <section className="py-12 sm:py-20 bg-gradient-to-r from-[#123499] to-[#2A57DE]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 text-balance">
@@ -892,7 +859,7 @@ export default function Home() {
             {howItWorks.map((item, index) => (
               <div
                 key={index}
-                className="rounded-2xl p-6 sm:p-8 bg-rose-50 border border-rose-100 hover:shadow-md transition-shadow duration-300"
+                className="rounded-2xl p-6 sm:p-8 bg-rose-50 border border-rose-100 hover:bg-white hover:shadow-md transition-all duration-300"
               >
                 <p className="text-xs text-gray-500 mb-4">{item.step}</p>
                 <div className="flex flex-col items-center text-center">
@@ -916,7 +883,7 @@ export default function Home() {
         </div>
       </section>
       {/* Are You Employer Section */}
-      <section className="py-12 sm:py-20 bg-[#EFF5FF]">
+      <section className="bg-[#EFF5FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-[#EFF5FF] rounded-lg p-8 sm:p-12">
             <div>
