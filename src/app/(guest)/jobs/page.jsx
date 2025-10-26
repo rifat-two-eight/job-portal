@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { Heart, MapPin, DollarSign, ChevronLeft, ChevronRight, Search } from "lucide-react"
 
@@ -354,9 +355,10 @@ const JobsPage = () => {
           <div className="lg:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {mockJobs.map((job) => (
-                <div
+                <Link
                   key={job.id}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition flex"
+                  href={`/jobs/${job.id}`}
+                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition flex cursor-pointer"
                 >
                   {/* Left Side Image */}
                   <div className="w-52">
@@ -380,7 +382,10 @@ const JobsPage = () => {
                           </div>
                         </div>
                         <button
-                          onClick={() => toggleSaveJob(job.id)}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            toggleSaveJob(job.id)
+                          }}
                           className="text-gray-400 hover:text-red-500 transition flex-shrink-0"
                         >
                           <Heart
@@ -422,7 +427,7 @@ const JobsPage = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 

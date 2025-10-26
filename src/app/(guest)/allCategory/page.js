@@ -1,3 +1,4 @@
+import JobCategoryCard from "@/components/shared/JobCategoryCard";
 import {
   Stethoscope,
   Code,
@@ -6,7 +7,6 @@ import {
   UtensilsCrossed,
   ChevronLeft,
 } from "lucide-react";
-import JobCategoryCard from "../components/shared/CategoryCard";
 
 const jobCategories = [
   { icon: Stethoscope, label: "Healthcare", count: "2.5k jobs" },

@@ -38,11 +38,17 @@ export default function Navbar() {
           <Link href="/jobs" className={linkClass("/jobs")}>
             Jobs
           </Link>
+          <Link href="/career-spotlight" className={linkClass("/career-spotlight")}>
+            Career Spotlight
+          </Link>
           <Link href="/pricing" className={linkClass("/pricing")}>
             Pricing
           </Link>
           <Link href="/faq" className={linkClass("/faq")}>
             FAQ
+          </Link>
+          <Link href="/history" className={linkClass("/history")}>
+            History
           </Link>
           {/* Notifications icon */}
           <Link
@@ -80,11 +86,17 @@ export default function Navbar() {
             <Link href="/jobs" className={linkClass("/jobs")}>
               Jobs
             </Link>
+            <Link href="/career-spotlight" className={linkClass("/career-spotlight")}>
+              Career Spotlight
+            </Link>
             <Link href="/pricing" className={linkClass("/pricing")}>
               Pricing
             </Link>
             <Link href="/faq" className={linkClass("/faq")}>
               FAQ
+            </Link>
+            <Link href="/history" className={linkClass("/history")}>
+              History
             </Link>
             <Link href="/notifications" className={linkClass("/notifications")}>
               Notifications
