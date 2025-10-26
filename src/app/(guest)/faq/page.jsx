@@ -50,11 +50,7 @@ const Item = ({ i, open, onToggle, q, a }) => {
           {isOpen ? "−" : "+"}
         </span>
       </button>
-      {isOpen && (
-        <div className="px-4 pb-4 text-sm text-gray-600">
-          {a}
-        </div>
-      )}
+      {isOpen && <div className="px-4 pb-4 text-sm text-gray-600">{a}</div>}
     </div>
   );
 };
@@ -63,9 +59,9 @@ export default function FAQPage() {
   const [open, setOpen] = useState(null);
 
   return (
-    <div className="px-6 py-10">
+    <div className="px-6 py-10 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-        <div className="flex justify-center">
+        <div className="flex justify-start">
           <img
             src="/forgot.svg"
             alt="FAQ Illustration"
@@ -80,7 +76,14 @@ export default function FAQPage() {
 
           <div className="mt-6 space-y-3">
             {faqs.map((f, idx) => (
-              <Item key={idx} i={idx} open={open} onToggle={setOpen} q={f.q} a={f.a} />
+              <Item
+                key={idx}
+                i={idx}
+                open={open}
+                onToggle={setOpen}
+                q={f.q}
+                a={f.a}
+              />
             ))}
           </div>
         </div>
