@@ -109,7 +109,7 @@ export default function Navbar() {
                   Job Seeker
                 </Link>
                 <Link
-                  href="/profile/recruiter"
+                  href="/profile/companyProfile"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   onClick={() => setDropdownOpen(false)}
                 >
