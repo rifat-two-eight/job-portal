@@ -12,7 +12,7 @@ export default function CompanyDeleteAccountPage() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(true)
 
   const menuItems = [
-    { icon: User, label: "Company Profile", href: "/profile/recruiterProfile" },
+    { icon: User, label: "Company Profile", href: "/profile/companyProfile" },
     {
       icon: Settings,
       label: "Settings",
