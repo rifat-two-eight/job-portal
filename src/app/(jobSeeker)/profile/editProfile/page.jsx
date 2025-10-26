@@ -15,14 +15,14 @@ export default function EditProfilePage() {
   const menuItems = [
     { icon: User, label: "My Profile", path: "/profile/myProfile" },
     { icon: Heart, label: "Favorite List", path: "/profile/favourite" }, // Updated to /profile/favourite
-    { icon: FileText, label: "Payment History", path: "/profile/paymentHistory" },
+    { icon: FileText, label: "Payment History", path: "/profile/payment" },
     { icon: Star, label: "Platform Review", path: "/profile/platformReview" },
     { icon: Settings, label: "Settings", subItems: [
       { icon: Lock, label: "Change Password", path: "/profile/settings/changePassword" },
       { icon: HelpCircle, label: "Help and Support", path: "/profile/settings/helpSupport" },
       { icon: Trash2, label: "Delete Account", path: "/profile/settings/deleteAccount" },
     ]},
-    { icon: LogOut, label: "Log Out", path: "/logout" },
+    { icon: LogOut, label: "Log Out", path: "/profile/logout" },
   ];
 
   const skills = ["React", "UI Design", "Website Design", "Prototyping", "Wireframe", "App design"];
