@@ -1,6 +1,7 @@
 "use client";
 
 import { FileText, Edit2, Trash2, Plus } from "lucide-react";
+import Link from "next/link";
 
 const ResumeList = ({ resumes, selectedId, onSelectResume }) => {
   return (
@@ -44,11 +45,12 @@ const ResumeList = ({ resumes, selectedId, onSelectResume }) => {
           </div>
         ))}
       </div>
-
-      <button className=" flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold">
-        <Plus className="w-8 h-8 mr-2" />
-        Add New Resume
-      </button>
+      <Link href={"/add-new-resume"}>
+        <button className=" flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold">
+          <Plus className="w-8 h-8 mr-2" />
+          Add New Resume
+        </button>
+      </Link>
     </div>
   );
 };
