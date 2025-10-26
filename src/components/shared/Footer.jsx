@@ -1,96 +1,160 @@
-import React from "react";
+import { Phone, Mail, MapPin, Linkedin as LinkedinIcon } from "lucide-react";
 import {
-  Phone,
-  Mail,
-  MapPin,
-  Linkedin as LinkedinIcon,
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  Apple,
-  Play,
-} from "lucide-react";
+  FaFacebookF,
+  FaLinkedinIn,
+  FaInstagram,
+  FaYoutube,
+  FaTiktok,
+  FaApple,
+  FaGooglePlay,
+} from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-[#0B2A7A] via-[#1D3FAF] to-[#2A57DE] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {/* Branding */}
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Jobarman" className="w-12 h-12" />
-              <span className="text-2xl font-semibold tracking-wide">JOBARMAN</span>
-            </div>
+    <footer className="bg-gradient-to-r from-[#2B4CB8] via-[#3B5FD9] to-[#4A6EFA] text-white">
+      {/* MAIN FOOTER CONTENT */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 pb-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* 1️⃣ Company Branding (Only Logo) */}
+          <div className="flex justify-center lg:justify-start">
+            <Image
+              src="/logo.png"
+              alt="Jobarman"
+              width={200}
+              height={200}
+              className="object-contain"
+            />
           </div>
 
-          {/* Quick Links */}
+          {/* 2️⃣ Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-blue-100">
-              <li><a href="#" className="hover:text-white transition">Home</a></li>
-              <li><a href="#" className="hover:text-white transition">Jobs</a></li>
-              <li><a href="#" className="hover:text-white transition">Resume</a></li>
-              <li><a href="#" className="hover:text-white transition">History</a></li>
-              <li><a href="#" className="hover:text-white transition">Pricing</a></li>
+            <h3 className="text-lg font-semibold mb-6 underline underline-offset-[10px] decoration-[2px]">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {["Home", "Jobs", "Resume", "History", "Pricing"].map(
+                (item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      href="#"
+                      className="text-blue-100 hover:text-white text-sm transition-colors duration-200"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
-          {/* Contact Us */}
+          {/* 3️⃣ Contact Information */}
           <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
-            <ul className="space-y-3 text-sm text-blue-100">
-              <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> (684) 555–0102</li>
-              <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> Michael.Mitc@example.com</li>
-              <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5" /> 2715 Ash Dr. San Jose, South Dakota 83475</li>
-              <li className="flex items-center gap-2"><LinkedinIcon className="w-4 h-4" /> LinkedIn.Com/Jobarman</li>
+            <h3 className="text-lg font-semibold mb-6 underline underline-offset-[10px] decoration-[2px]">
+              Contact Us
+            </h3>
+            <ul className="space-y-4 text-blue-100 text-sm">
+              <li className="flex items-center gap-3">
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                (684) 555–0102
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                Michael.Mitc@example.com
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                2715 Ash Dr. San Jose, South Dakota 83475
+              </li>
+              <li className="flex items-center gap-3">
+                <LinkedinIcon className="w-4 h-4 flex-shrink-0" />
+                Linkedin.com/Jobarman
+              </li>
             </ul>
           </div>
 
-          {/* Mobile App + Social */}
+          {/* 4️⃣ Mobile App Section */}
           <div>
-            <h4 className="font-semibold mb-4">Our Mobile App</h4>
-            <div className="flex flex-col gap-3">
-              {/* App Store badge */}
-              <a href="#" className="flex items-center gap-3 bg-white text-gray-900 rounded-lg px-4 py-2 shadow-sm">
-                <Apple className="w-6 h-6" />
+            <h3 className="text-lg font-semibold mb-6 underline underline-offset-[10px] decoration-[2px]">
+              Our Mobile App
+            </h3>
+
+            {/* App Store Buttons */}
+            <div className="space-y-3 mb-8">
+              <a
+                href="#"
+                className="flex items-center gap-3 bg-white text-gray-900 rounded-xl px-4 py-3 hover:bg-gray-50 shadow-sm transition-colors duration-200"
+              >
+                <FaApple className="w-6 h-6" />
                 <div>
-                  <div className="text-xs leading-tight">Download on the</div>
-                  <div className="text-sm font-semibold">Apple Store</div>
+                  <p className="text-xs text-gray-600">Download On The</p>
+                  <p className="text-sm font-semibold">Apple Store</p>
                 </div>
               </a>
-              {/* Google Play badge */}
-              <a href="#" className="flex items-center gap-3 bg-white text-gray-900 rounded-lg px-4 py-2 shadow-sm">
-                <Play className="w-6 h-6" />
+
+              <a
+                href="#"
+                className="flex items-center gap-3 bg-white text-gray-900 rounded-xl px-4 py-3 hover:bg-gray-50 shadow-sm transition-colors duration-200"
+              >
+                <FaGooglePlay className="w-6 h-6" />
                 <div>
-                  <div className="text-xs leading-tight">Get it on</div>
-                  <div className="text-sm font-semibold">Google Play</div>
+                  <p className="text-xs text-gray-600">Get it On</p>
+                  <p className="text-sm font-semibold">Google Play</p>
                 </div>
               </a>
             </div>
 
-            <div className="mt-6">
-              <h4 className="font-semibold mb-3">Connect With Us</h4>
-              <div className="flex items-center gap-3 text-blue-100">
-                <a href="#" className="hover:text-white"><Facebook className="w-5 h-5" /></a>
-                <a href="#" className="hover:text-white"><Instagram className="w-5 h-5" /></a>
-                <a href="#" className="hover:text-white"><LinkedinIcon className="w-5 h-5" /></a>
-                <a href="#" className="hover:text-white"><Youtube className="w-5 h-5" /></a>
-                <a href="#" className="hover:text-white"><Twitter className="w-5 h-5" /></a>
-              </div>
-            </div>
+            <h4 className="text-lg font-semibold mb-2">Connect With Us</h4>
           </div>
         </div>
       </div>
-      {/* Bottom bar */}
-      <div className="border-t border-blue-300/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-sm text-blue-100 flex items-center justify-between">
-          <span>© 2024 Exemple.Com. All Rights Reserved.</span>
-          <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-white">Terms & Conditions</a>
-            <span className="opacity-50">•</span>
-            <a href="#" className="hover:text-white">Privacy Policy</a>
+
+      {/* Footer Bottom Section */}
+      <div className="border-t border-blue-200/20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4">
+          {/* Left Side - Copyright */}
+          <div className="text-sm text-blue-100 text-center md:text-left">
+            © 2024 Example.com. All Rights Reserved.
+          </div>
+
+          {/* Right Side - Icons + Links */}
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-3">
+              {[
+                { Icon: FaFacebookF, color: "text-blue-600" },
+                { Icon: FaLinkedinIn, color: "text-blue-600" },
+                { Icon: FaInstagram, color: "text-pink-500" },
+                { Icon: FaYoutube, color: "text-red-600" },
+                { Icon: FaTiktok, color: "text-gray-800" },
+              ].map(({ Icon, color }, idx) => (
+                <Link
+                  key={idx}
+                  href="#"
+                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transform transition duration-300"
+                >
+                  <Icon className={`w-4 h-4 ${color}`} />
+                </Link>
+              ))}
+            </div>
+
+            {/* Terms and Privacy Links */}
+            <div className="flex items-center gap-3 text-sm">
+              <Link
+                href="/terms-and-conditions"
+                className="text-blue-100 hover:text-white transition-colors duration-200"
+              >
+                Terms & Conditions
+              </Link>
+              <span className="text-blue-200/50">•</span>
+              <Link
+                href="/privacy-policy"
+                className="text-blue-100 hover:text-white transition-colors duration-200"
+              >
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
       </div>
