@@ -30,6 +30,7 @@ export default function Navbar() {
     <header className="border-b border-gray-200 sticky top-0 bg-white z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <img src="/logo.png" alt="Jobarman" className="w-24 h-12" />
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-8 items-center">
           <Link href="/" className={linkClass("/")}>
@@ -38,7 +39,10 @@ export default function Navbar() {
           <Link href="/jobs" className={linkClass("/jobs")}>
             Jobs
           </Link>
-          <Link href="/career-spotlight" className={linkClass("/career-spotlight")}>
+          <Link
+            href="/career-spotlight"
+            className={linkClass("/career-spotlight")}
+          >
             Career Spotlight
           </Link>
           <Link href="/pricing" className={linkClass("/pricing")}>
@@ -57,6 +61,14 @@ export default function Navbar() {
             className={iconClass("/notifications")}
           >
             <Bell className="w-5 h-5" />
+          </Link>
+          {/* Profile avatar */}
+          <Link href="/profile/myProfile">
+            <img
+              src="/avatar.png" // Replace with dynamic avatar if available
+              alt="Profile"
+              className="w-8 h-8 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#123499] transition"
+            />
           </Link>
           <Link href="/login" className={btnClass("/login")}>
             Sign In
@@ -86,7 +98,10 @@ export default function Navbar() {
             <Link href="/jobs" className={linkClass("/jobs")}>
               Jobs
             </Link>
-            <Link href="/career-spotlight" className={linkClass("/career-spotlight")}>
+            <Link
+              href="/career-spotlight"
+              className={linkClass("/career-spotlight")}
+            >
               Career Spotlight
             </Link>
             <Link href="/pricing" className={linkClass("/pricing")}>
@@ -100,6 +115,15 @@ export default function Navbar() {
             </Link>
             <Link href="/notifications" className={linkClass("/notifications")}>
               Notifications
+            </Link>
+            {/* Mobile Profile avatar */}
+            <Link href="/profile" className="flex items-center gap-2">
+              <img
+                src="/avatar.png" // Replace with dynamic avatar
+                alt="Profile"
+                className="w-8 h-8 rounded-full border border-gray-300"
+              />
+              <span className="text-gray-700">Profile</span>
             </Link>
             <Link
               href="/login"
