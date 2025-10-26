@@ -18,7 +18,7 @@ const TabButton = ({ label, active, onClick }) => (
   <button
     onClick={onClick}
     className={
-      "px-4 py-2 rounded-md border text-sm font-medium transition-colors " +
+      "px-4 sm:px-6 py-2 sm:py-3 rounded-md border text-sm sm:text-base font-semibold transition-colors " +
       (active
         ? "bg-orange-500 text-white border-orange-500 shadow-sm"
         : "bg-white text-gray-700 hover:bg-gray-100")
@@ -31,7 +31,6 @@ const TabButton = ({ label, active, onClick }) => (
 const statusStyles = {
   applied: "border-blue-500 text-blue-600",
   rejected: "border-red-500 text-red-600",
-  // Updated to green to match screenshot
   interview: "border-green-500 text-green-600",
 };
 
@@ -44,7 +43,7 @@ const JobCard = ({ job, onClick }) => (
       <img
         src="/cardpic.png"
         alt="We are Hiring"
-        className="w-full h-28 object-cover rounded-md"
+        className="w-full h-28 sm:h-36 md:h-28 object-cover rounded-md"
       />
     </div>
     <div className="px-4 pb-4">
@@ -92,7 +91,6 @@ const timelineFor = (status) => {
 };
 
 const JobModal = ({ job, onClose }) => {
-  // Close on ESC
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -107,10 +105,9 @@ const JobModal = ({ job, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-white rounded-xl shadow-xl"
+        className="relative w-full sm:max-w-2xl md:max-w-4xl bg-white rounded-xl shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           aria-label="Close"
           onClick={onClose}
@@ -120,14 +117,14 @@ const JobModal = ({ job, onClose }) => {
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-          {/* Left: job card preview */}
+          {/* Left: job preview */}
           <div>
             <div className="rounded-xl border border-gray-200 bg-white">
               <div className="p-3">
                 <img
                   src="/cardpic.png"
                   alt="We are Hiring"
-                  className="w-full h-36 object-cover rounded-md"
+                  className="w-full h-36 sm:h-48 md:h-36 object-cover rounded-md"
                 />
               </div>
               <div className="px-4 pb-4">
@@ -160,15 +157,7 @@ const JobModal = ({ job, onClose }) => {
                   Reject Reason
                 </p>
                 <div className="mt-2 rounded-md border border-red-200 bg-red-50 p-3 text-xs text-gray-700">
-                  Thank you for applying for the UI/UX Designer position. After
-                  reviewing your CV and experience, we found that your
-                  qualifications do not fully match the specific requirements
-                  outlined for this role. This position requires proven
-                  expertise in areas such as user research, design systems,
-                  interaction design, wireframing, prototyping, and familiarity
-                  with modern front-end frameworks. We encourage you to continue
-                  building your design experience and apply again in the future
-                  when your profile better aligns with the role's requirements.
+                  Thank you for applying for the UI/UX Designer position...
                 </div>
               </div>
             )}
@@ -180,7 +169,6 @@ const JobModal = ({ job, onClose }) => {
               <p className="font-semibold text-sm text-gray-800">
                 Application Timeline
               </p>
-
               <div className="mt-3 space-y-3 text-sm">
                 {items.map((it) => (
                   <div key={it.label}>
@@ -193,7 +181,6 @@ const JobModal = ({ job, onClose }) => {
 
             <div className="mt-4 rounded-lg border border-gray-200 p-4">
               <p className="font-semibold text-sm text-gray-800">Attachment</p>
-
               <div className="mt-3 space-y-3">
                 <div className="flex items-center gap-3 rounded-md border border-gray-200 p-3">
                   <img src="/file.svg" alt="file" className="w-5 h-5" />
@@ -228,7 +215,6 @@ const JobModal = ({ job, onClose }) => {
   );
 };
 
-// Interview section with subtabs and card grid
 const Pill = ({ active, children, onClick }) => (
   <button
     onClick={onClick}
@@ -236,7 +222,7 @@ const Pill = ({ active, children, onClick }) => (
       (active
         ? "bg-gradient-to-r from-blue-800 to-blue-500 text-white shadow-sm"
         : "bg-white text-gray-700 border") +
-      " rounded-full px-6 py-2 text-sm font-medium"
+      " rounded-full px-3 sm:px-6 py-1 sm:py-2 text-xs sm:text-sm font-medium"
     }
   >
     {children}
@@ -267,7 +253,7 @@ const InterviewSection = ({ onSelect }) => {
 
   return (
     <div className="mt-4">
-      <div className="flex gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         <Pill
           active={subTab === "upcoming"}
           onClick={() => setSubTab("upcoming")}
@@ -307,8 +293,9 @@ export default function HistoryPage() {
       : makeJobs("interview");
 
   return (
-    <div className="px-6 py-6">
-      <div className="flex gap-3">
+    <div className="px-4 sm:px-6 py-6">
+      {/* Tabs */}
+      <div className="flex flex-wrap justify-center gap-4 mb-6">
         <TabButton
           label="Applied Jobs"
           active={active === "applied"}
@@ -326,6 +313,7 @@ export default function HistoryPage() {
         />
       </div>
 
+      {/* Job list */}
       {active === "interview" ? (
         <InterviewSection onSelect={setSelected} />
       ) : (

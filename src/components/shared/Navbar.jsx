@@ -1,17 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Bell } from "lucide-react";
+import { Menu, X, Bell, MessageCircle } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const pathname = usePathname();
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const linkClass = (href) =>
     `${
-      pathname === href ? "text-[#123499] font-semibold" : "text-gray-600"
+      pathname === href
+        ? "text-[#123499] font-semibold underline underline-offset-8 decoration-[2px]"
+        : "text-gray-600"
     } hover:text-gray-900 transition`;
 
   const btnClass = (href) =>
@@ -54,7 +69,7 @@ export default function Navbar() {
           <Link href="/history" className={linkClass("/history")}>
             History
           </Link>
-          {/* Notifications icon */}
+
           <Link
             href="/notifications"
             aria-label="Notifications"
@@ -62,14 +77,48 @@ export default function Navbar() {
           >
             <Bell className="w-5 h-5" />
           </Link>
-          {/* Profile avatar */}
-          <Link href="/profile/myProfile">
-            <img
-              src="/avatar.png" // Replace with dynamic avatar if available
-              alt="Profile"
-              className="w-8 h-8 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#123499] transition"
-            />
+
+          <Link
+            href="/chat"
+            aria-label="Messages"
+            className={iconClass("/chat")}
+          >
+            <MessageCircle className="w-5 h-5" />
           </Link>
+
+          {/* Profile avatar with dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="focus:outline-none"
+            >
+              <img
+                src="/avatar.png"
+                alt="Profile"
+                className="w-8 h-8 rounded-full border border-gray-300 hover:ring-2 hover:ring-[#123499] transition"
+              />
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <Link
+                  href="/profile/myProfile"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Job Seeker
+                </Link>
+                <Link
+                  href="/profile/recruiter"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Recruiter
+                </Link>
+              </div>
+            )}
+          </div>
+
           <Link href="/login" className={btnClass("/login")}>
             Sign In
           </Link>
@@ -113,18 +162,48 @@ export default function Navbar() {
             <Link href="/history" className={linkClass("/history")}>
               History
             </Link>
+
+            {/* Mobile Notifications & Messages */}
             <Link href="/notifications" className={linkClass("/notifications")}>
               Notifications
             </Link>
-            {/* Mobile Profile avatar */}
-            <Link href="/profile" className="flex items-center gap-2">
-              <img
-                src="/avatar.png" // Replace with dynamic avatar
-                alt="Profile"
-                className="w-8 h-8 rounded-full border border-gray-300"
-              />
-              <span className="text-gray-700">Profile</span>
+            <Link href="/chat" className={linkClass("/messages")}>
+              Messages
             </Link>
+
+            {/* Mobile Profile avatar with dropdown */}
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center gap-2 focus:outline-none"
+              >
+                <img
+                  src="/avatar.png"
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full border border-gray-300"
+                />
+                <span className="text-gray-700">Profile</span>
+              </button>
+              {dropdownOpen && (
+                <div className="flex flex-col ml-10 gap-1">
+                  <Link
+                    href="/profile/jobseeker"
+                    className="text-gray-700 hover:text-[#123499]"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Job Seeker
+                  </Link>
+                  <Link
+                    href="/profile/recruiter"
+                    className="text-gray-700 hover:text-[#123499]"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Recruiter
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
               href="/login"
               className={`${
