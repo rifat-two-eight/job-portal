@@ -1,7 +1,7 @@
 "use client";
 
+import ReviewCard from "@/components/shared/ReviewCard";
 import { useEffect, useState } from "react";
-import ReviewCard from "../components/shared/ReviewCard";
 
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);

@@ -57,7 +57,9 @@ const JobCard = ({ job, onClick }) => (
         <span>{job.location}</span>
       </div>
       <button
-        className={`mt-3 w-full rounded-md border bg-white text-xs py-1 ${statusStyles[job.status]}`}
+        className={`mt-3 w-full rounded-md border bg-white text-xs py-1 ${
+          statusStyles[job.status]
+        }`}
       >
         {job.status === "rejected"
           ? "Reject"
@@ -122,26 +124,51 @@ const JobModal = ({ job, onClose }) => {
           <div>
             <div className="rounded-xl border border-gray-200 bg-white">
               <div className="p-3">
-                <img src="/cardpic.png" alt="We are Hiring" className="w-full h-36 object-cover rounded-md" />
+                <img
+                  src="/cardpic.png"
+                  alt="We are Hiring"
+                  className="w-full h-36 object-cover rounded-md"
+                />
               </div>
               <div className="px-4 pb-4">
                 <p className="text-base font-semibold">{job.title}</p>
-                <a href="#" className="text-sm text-blue-600 font-medium hover:underline">{job.company}</a>
+                <a
+                  href="#"
+                  className="text-sm text-blue-600 font-medium hover:underline"
+                >
+                  {job.company}
+                </a>
                 <div className="mt-2 flex items-center gap-2 text-xs text-gray-600">
                   <img src="/globe.svg" alt="location" className="w-4 h-4" />
                   <span>{job.location}</span>
                 </div>
-                <button className={`mt-3 w-full rounded-md border bg-white text-xs py-1 ${statusStyles[job.status]}`}>
-                  {job.status === "rejected" ? "Reject" : job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+                <button
+                  className={`mt-3 w-full rounded-md border bg-white text-xs py-1 ${
+                    statusStyles[job.status]
+                  }`}
+                >
+                  {job.status === "rejected"
+                    ? "Reject"
+                    : job.status.charAt(0).toUpperCase() + job.status.slice(1)}
                 </button>
               </div>
             </div>
 
             {job.status === "rejected" && (
               <div className="mt-4">
-                <p className="font-semibold text-sm text-red-600">Reject Reason</p>
+                <p className="font-semibold text-sm text-red-600">
+                  Reject Reason
+                </p>
                 <div className="mt-2 rounded-md border border-red-200 bg-red-50 p-3 text-xs text-gray-700">
-                  Thank you for applying for the UI/UX Designer position. After reviewing your CV and experience, we found that your qualifications do not fully match the specific requirements outlined for this role. This position requires proven expertise in areas such as user research, design systems, interaction design, wireframing, prototyping, and familiarity with modern front-end frameworks. We encourage you to continue building your design experience and apply again in the future when your profile better aligns with the role's requirements.
+                  Thank you for applying for the UI/UX Designer position. After
+                  reviewing your CV and experience, we found that your
+                  qualifications do not fully match the specific requirements
+                  outlined for this role. This position requires proven
+                  expertise in areas such as user research, design systems,
+                  interaction design, wireframing, prototyping, and familiarity
+                  with modern front-end frameworks. We encourage you to continue
+                  building your design experience and apply again in the future
+                  when your profile better aligns with the role's requirements.
                 </div>
               </div>
             )}
@@ -150,7 +177,9 @@ const JobModal = ({ job, onClose }) => {
           {/* Right: timeline + attachments */}
           <div>
             <div className="rounded-lg border border-gray-200 p-4">
-              <p className="font-semibold text-sm text-gray-800">Application Timeline</p>
+              <p className="font-semibold text-sm text-gray-800">
+                Application Timeline
+              </p>
 
               <div className="mt-3 space-y-3 text-sm">
                 {items.map((it) => (
@@ -170,14 +199,18 @@ const JobModal = ({ job, onClose }) => {
                   <img src="/file.svg" alt="file" className="w-5 h-5" />
                   <div className="text-sm">
                     <p className="font-medium">Resume wade adoyeo 20_89_4</p>
-                    <p className="text-[11px] text-gray-500">PDF Document 306kb</p>
+                    <p className="text-[11px] text-gray-500">
+                      PDF Document 306kb
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 rounded-md border border-gray-200 p-3">
                   <img src="/file.svg" alt="file" className="w-5 h-5" />
                   <div className="text-sm">
                     <p className="font-medium">Experience Certificate</p>
-                    <p className="text-[11px] text-gray-500">PDF Document 306kb</p>
+                    <p className="text-[11px] text-gray-500">
+                      PDF Document 306kb
+                    </p>
                   </div>
                 </div>
               </div>
@@ -235,13 +268,27 @@ const InterviewSection = ({ onSelect }) => {
   return (
     <div className="mt-4">
       <div className="flex gap-4">
-        <Pill active={subTab === "upcoming"} onClick={() => setSubTab("upcoming")}>Upcoming</Pill>
-        <Pill active={subTab === "complete"} onClick={() => setSubTab("complete")}>Complete</Pill>
+        <Pill
+          active={subTab === "upcoming"}
+          onClick={() => setSubTab("upcoming")}
+        >
+          Upcoming
+        </Pill>
+        <Pill
+          active={subTab === "complete"}
+          onClick={() => setSubTab("complete")}
+        >
+          Complete
+        </Pill>
       </div>
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {rows.map((job) => (
-          <JobCard key={`interview-${subTab}-${job.id}`} job={job} onClick={() => onSelect(job)} />
+          <JobCard
+            key={`interview-${subTab}-${job.id}`}
+            job={job}
+            onClick={() => onSelect(job)}
+          />
         ))}
       </div>
     </div>
@@ -262,9 +309,21 @@ export default function HistoryPage() {
   return (
     <div className="px-6 py-6">
       <div className="flex gap-3">
-        <TabButton label="Applied Jobs" active={active === "applied"} onClick={() => setActive("applied")} />
-        <TabButton label="Rejected Jobs" active={active === "rejected"} onClick={() => setActive("rejected")} />
-        <TabButton label="Interview" active={active === "interview"} onClick={() => setActive("interview")} />
+        <TabButton
+          label="Applied Jobs"
+          active={active === "applied"}
+          onClick={() => setActive("applied")}
+        />
+        <TabButton
+          label="Rejected Jobs"
+          active={active === "rejected"}
+          onClick={() => setActive("rejected")}
+        />
+        <TabButton
+          label="Interview"
+          active={active === "interview"}
+          onClick={() => setActive("interview")}
+        />
       </div>
 
       {active === "interview" ? (
@@ -272,12 +331,18 @@ export default function HistoryPage() {
       ) : (
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {jobs.map((job) => (
-            <JobCard key={`${active}-${job.id}`} job={job} onClick={() => setSelected(job)} />
+            <JobCard
+              key={`${active}-${job.id}`}
+              job={job}
+              onClick={() => setSelected(job)}
+            />
           ))}
         </div>
       )}
 
-      {selected && <JobModal job={selected} onClose={() => setSelected(null)} />}
+      {selected && (
+        <JobModal job={selected} onClose={() => setSelected(null)} />
+      )}
     </div>
   );
 }

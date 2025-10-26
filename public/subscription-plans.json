@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Free",
+    "price": "$0",
+    "period": "per month",
+    "features": [
+      "Browse job listings",
+      "Limited auto-apply (1–50)",
+      "Basic resume templates",
+      "No AI cover letters",
+      "No ATS score/analysis"
+    ],
+    "cta": "Enable",
+    "highlighted": false
+  },
+  {
+    "name": "Pro",
+    "price": "$19.99",
+    "period": "per month",
+    "features": [
+      "Unlimited auto-apply",
+      "AI-generated cover letters",
+      "ATS analysis & optimization tips",
+      "Smart resume & cover letter builder",
+      "Application tracking dashboard",
+      "No Career Copilot or advanced analytics"
+    ],
+    "cta": "Buy Now",
+    "highlighted": true
+  },
+  {
+    "name": "Premium",
+    "price": "$69.99",
+    "period": "per month",
+    "features": [
+      "Everything in Premium",
+      "AI Career Copilot (personalized career guidance, skill gap analysis, learning paths)",
+      "Recruiter visibility boost",
+      "Advanced analytics & insights (resume performance, recruiter engagement, job match score)",
+      "Priority support & early access to new features"
+    ],
+    "cta": "Buy Now",
+    "highlighted": true
+  }
+]
