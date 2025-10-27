@@ -42,7 +42,12 @@
     "src/app/(jobSeeker)/layout.jsx",
     "src/app/(auth)/layout.jsx",
     "src/app/(recruiter)/layout.jsx",
-    "src/app/(allUser)/chat/page.jsx"
+    "src/app/(allUser)/chat/page.jsx",
+    "src/app/(recruiter)/recruitment-dashboard/page.jsx",
+    "src/app/(recruiter)/recruitment-dashboard/recent-applicants.jsx",
+    "src/app/(recruiter)/recruitment-dashboard/metrics-card.jsx",
+    "src/app/(recruiter)/edit-job-post/page.jsx",
+    "src/app/(recruiter)/seeker-resume/page.jsx"
   ],
   "exclude": [
     "node_modules"
