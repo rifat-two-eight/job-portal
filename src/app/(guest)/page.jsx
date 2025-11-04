@@ -239,7 +239,7 @@ export default function Home() {
 
   return (
     <main className="w-full bg-white">
-      <section className="py-12 sm:py-20 bg-gradient-to-b from-blue-50 to-white">
+      <section className="py-12 sm:py-20 bg-[#E1F6FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Content */}
@@ -289,9 +289,9 @@ export default function Home() {
             {/* Right Images */}
             <div>
               <img
-                src="/banner.png"
+                src="/groupHome.svg"
                 alt="Banner"
-                className="rounded-lg w-full h-64 object-cover"
+                className="rounded-lg w-full h-full"
               />
             </div>
           </div>
@@ -309,7 +309,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex items-center rounded-full overflow-hidden border border-gray-200 shadow-sm">
+          <div className="flex items-center rounded-xl overflow-hidden border border-gray-200 shadow-sm">
             {/* Input area */}
             <div className="flex-1 flex items-center bg-blue-50">
               <input
@@ -418,50 +418,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Recent jobs data for home page cards
-      const recentJobs = [
-      {
-      id: 1,
-      title: "Sr. UIUX Designer",
-      company: "Design-Hill",
-      location: "California, United State.",
-      type: "Full Time",
-      remote: true,
-      remaining: "05 Days Remaining",
-      image: "/cardpic.png",
-      },
-      {
-      id: 2,
-      title: "Sr. UIUX Designer",
-      company: "Design-Hill",
-      location: "California, United State.",
-      type: "Full Time",
-      remote: true,
-      remaining: "05 Days Remaining",
-      image: "/cardpic.png",
-      },
-      {
-      id: 3,
-      title: "Sr. UIUX Designer",
-      company: "Design-Hill",
-      location: "California, United State.",
-      type: "Full Time",
-      remote: true,
-      remaining: "05 Days Remaining",
-      image: "/cardpic.png",
-      },
-      {
-      id: 4,
-      title: "Sr. UIUX Designer",
-      company: "Design-Hill",
-      location: "California, United State.",
-      type: "Full Time",
-      remote: true,
-      remaining: "05 Days Remaining",
-      image: "/cardpic.png",
-      },
-      ];
-      {/* Filters Modal */}
+      
       {filtersOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
@@ -800,49 +757,59 @@ export default function Home() {
         </div>
       </section>
       {/* Resume Score Generator Section */}
-      <section className="py-12 sm:py-20 bg-gradient-to-r from-[#123499] to-[#2A57DE]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 text-balance">
-              Resume Score Generator
-            </h2>
-            <p className="text-blue-100 text-balance">
-              Choose the job title you are targeting
+<section className="py-12 max-w-7xl px-4 mb-14 rounded-xl mx-auto sm:py-20 bg-gradient-to-r from-[#123499] to-[#2A57DE]">
+  <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
+    <div className="text-center mb-8">
+      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 text-balance">
+        Resume Score Generator
+      </h2>
+      <p className="text-blue-100 text-balance">
+        Choose The Job Title You Are Targeting
+      </p>
+      <p className="text-blue-200 text-sm mt-1">
+        This Helps Us Analyze Your Resume Against Industry-Specific Requirements
+      </p>
+    </div>
+
+    <div className="bg-blue-600 bg-opacity-40 rounded-2xl p-8 space-y-6 border border-blue-400 border-opacity-50">
+      {/* Job Title Selector */}
+      <div>
+        <select className="w-full px-4 py-3 rounded-lg border border-blue-300 bg-blue-500 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent">
+          <option value="Software Developer">Software Developer</option>
+          <option value="Product Manager">Product Manager</option>
+          <option value="Data Scientist">Data Scientist</option>
+          <option value="UX Designer">UX Designer</option>
+          <option value="DevOps Engineer">DevOps Engineer</option>
+          <option value="Full Stack Engineer">Full Stack Engineer</option>
+        </select>
+      </div>
+
+      {/* File Upload Area */}
+      <div className="border-2 border-dashed border-blue-300 rounded-xl p-8 text-center hover:border-white transition cursor-pointer">
+        <div className="flex flex-col items-center gap-3">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+          </svg>
+          <div>
+            <p className="text-white font-semibold">
+              Drop Your Resume Here Or Click To Browse
+            </p>
+            <p className="text-blue-200 text-sm mt-1">
+              Supported format: PDF, DOCX
             </p>
           </div>
-
-          <div className="bg-blue-500 rounded-lg p-6 sm:p-8 space-y-4">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="text"
-                placeholder="Enter job title..."
-                className="flex-1 px-4 py-3 rounded-lg border border-blue-400 bg-blue-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button className="px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition font-semibold whitespace-nowrap">
-                Analyze
-              </button>
-            </div>
-
-            <div className="bg-blue-600 rounded-lg p-6 text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <FileText className="w-6 h-6 text-white" />
-                <span className="text-white font-semibold">
-                  Drop Your Resume Here Or Click To Browse
-                </span>
-              </div>
-              <p className="text-blue-100 text-sm">
-                Supported formats: PDF, DOC, DOCX
-              </p>
-            </div>
-
-            <div className="bg-blue-600 rounded-lg p-4 text-center">
-              <p className="text-white font-semibold">Analysis Results</p>
-            </div>
-          </div>
         </div>
-      </section>
+      </div>
+
+      {/* Analyze Button */}
+      <button className="w-full px-6 py-3 bg-blue-500 border border-blue-300 text-white rounded-lg hover:bg-blue-400 transition font-semibold">
+        Analyze Resume
+      </button>
+    </div>
+  </div>
+</section>
       {/* How it works at Jobarman */}
-      <section className="py-16 sm:py-24 bg-gray-50">
+      <section className="py-16 sm:py-24 bg-[#FFF6F6] mb-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-balance">
