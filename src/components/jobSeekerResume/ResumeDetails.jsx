@@ -14,159 +14,135 @@ import {
   Award,
 } from "lucide-react";
 
-const ResumeDetails = ({ resume }) => {
+export default function ResumeDetails({ resume }) {
   return (
-    <div className="space-y-8">
-      {/* Contact Info */}
-      <div className="border-b border-gray-300 pb-6">
-        <h2 className="text-center text-2xl font-semibold text-black mb-2">
+    <div className="h-full overflow-y-auto bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-5 lg:p-6 space-y-5 sm:space-y-6">
+      {/* ==== Contact ==== */}
+      <div className="border-b border-gray-300 pb-4 sm:pb-5">
+        <h2 className="text-center text-xl sm:text-2xl font-bold text-gray-900 mb-2">
           {resume.name}
         </h2>
-        <div className="flex flex-wrap gap-4 text-sm text-black mb-3 justify-center">
-          <div className="flex items-center gap-1">
-            <MapPin className="w-4 h-4" />
-            <span>{resume.location}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Phone className="w-4 h-4" />
-            <span>{resume.phone}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Mail className="w-4 h-4" />
-            <span>{resume.email}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Linkedin className="w-4 h-4" />
-            <span>{resume.linkedin}</span>
+
+        <div className="flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm text-gray-700 justify-center mb-2">
+          {[
+            { Icon: MapPin, text: resume.location },
+            { Icon: Phone, text: resume.phone },
+            { Icon: Mail, text: resume.email },
+            { Icon: Linkedin, text: resume.linkedin },
+          ].map(({ Icon, text }, i) => (
+            <div key={i} className="flex items-center gap-1">
+              <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-500" />
+              <span className="truncate max-w-28 sm:max-w-none">{text}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center mb-2">
+          <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-700">
+            <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-500" />
+            <span className="truncate max-w-32 sm:max-w-none">{resume.github}</span>
           </div>
         </div>
-        <div className="flex justify-center mb-3">
-          <div className="flex items-center gap-1">
-            <Github className="w-4 h-4" />
-            <span>{resume.github}</span>
-          </div>
-        </div>
-        <div className="text-sm text-black text-center">
-          <span className="font-semibold">Work Authentication:</span>{" "}
-          {resume.workAuth}, <span className="font-semibold">Clearance:</span>{" "}
-          {resume.clearance}, <span className="font-semibold">Open To:</span>{" "}
-          {resume.openTo}
-        </div>
+
+        <p className="text-xs sm:text-sm text-gray-700 text-center">
+          <span className="font-medium">Work Auth:</span> {resume.workAuth} |{" "}
+          <span className="font-medium">Clearance:</span> {resume.clearance} |{" "}
+          <span className="font-medium">Open To:</span> {resume.openTo}
+        </p>
       </div>
 
-      {/* Summary */}
+      {/* ==== Summary ==== */}
       <div>
-        <div className="flex items-center gap-2 mb-3">
-          <Users className="w-8 h-8 text-[#123499]" />
-          <h3 className="text-2xl font-semibold text-[#123499]">SUMMARY</h3>
+        <div className="flex items-center gap-2 mb-2">
+          <Users className="w-6 h-6 sm:w-7 sm:h-7 text-[#123499]" />
+          <h3 className="text-lg sm:text-xl font-bold text-[#123499]">SUMMARY</h3>
         </div>
-        <p className="text-sm text-black leading-6">{resume.summary}</p>
+        <p className="text-xs sm:text-sm text-gray-800 leading-relaxed">
+          {resume.summary}
+        </p>
         {resume.highlights && (
-          <p className="text-sm text-black leading-relaxed mt-2">
-            <span className="font-semibold leading-6">Highlights:</span>{" "}
-            {resume.highlights}
+          <p className="text-xs sm:text-sm text-gray-700 mt-2">
+            <span className="font-medium">Highlights:</span> {resume.highlights}
           </p>
         )}
       </div>
 
-      {/* Core Skills */}
+      {/* ==== Core Skills ==== */}
       <div>
-        <div className="flex items-center gap-3 mb-3">
-          <Settings className="w-8 h-8 text-[#123499]" />
-          <h3 className="text-2xl font-semibold text-[#123499]">CORE SKILLS</h3>
+        <div className="flex items-center gap-2 mb-2">
+          <Settings className="w-6 h-6 sm:w-7 sm:h-7 text-[#123499]" />
+          <h3 className="text-lg sm:text-xl font-bold text-[#123499]">CORE SKILLS</h3>
         </div>
-        <div className="grid grid-cols-2 gap-6">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
+          <div className="space-y-2">
             {resume.skills.platform && (
-              <>
-                <h4 className="font-semibold text-gray-900 mb-2">Platform:</h4>
-                <p className="text-sm text-black leading-6">
-                  {resume.skills.platform}
-                </p>
-              </>
+              <div>
+                <h4 className="font-semibold text-gray-800">Platform:</h4>
+                <p className="text-gray-700">{resume.skills.platform}</p>
+              </div>
             )}
             {resume.skills.hadr && (
-              <>
-                <h4 className="font-semibold text-gray-900 mt-3 mb-2">
-                  HA/DR:
-                </h4>
-                <p className="text-sm text-black leading-6">
-                  {resume.skills.hadr}
-                </p>
-              </>
+              <div>
+                <h4 className="font-semibold text-gray-800">HA/DR:</h4>
+                <p className="text-gray-700">{resume.skills.hadr}</p>
+              </div>
             )}
             {resume.skills.performance && (
-              <>
-                <h4 className="font-semibold text-gray-900 mt-3 mb-2">
-                  Performance:
-                </h4>
-                <p className="text-sm text-black leading-6">
-                  {resume.skills.performance}
-                </p>
-              </>
+              <div>
+                <h4 className="font-semibold text-gray-800">Performance:</h4>
+                <p className="text-gray-700">{resume.skills.performance}</p>
+              </div>
             )}
             {resume.skills.security && (
-              <>
-                <h4 className="font-semibold text-gray-900 mt-3 mb-2">
-                  Security/Compliance:
-                </h4>
-                <p className="text-sm text-black leading-6">
-                  {resume.skills.security}
-                </p>
-              </>
+              <div>
+                <h4 className="font-semibold text-gray-800">Security/Compliance:</h4>
+                <p className="text-gray-700">{resume.skills.security}</p>
+              </div>
             )}
           </div>
-          <div>
+          <div className="space-y-2">
             {resume.skills.automation && (
-              <>
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Automation/DevOps:
-                </h4>
-                <p className="text-sm text-black leading-6">
-                  {resume.skills.automation}
-                </p>
-              </>
+              <div>
+                <h4 className="font-semibold text-gray-800">Automation/DevOps:</h4>
+                <p className="text-gray-700">{resume.skills.automation}</p>
+              </div>
             )}
             {resume.skills.major && (
-              <>
-                <h4 className="font-semibold text-gray-900 mt-3 mb-2">
-                  Monitoring/Tools:
-                </h4>
-                <p className="text-sm text-black leading-6">
-                  {resume.skills.major}
-                </p>
-              </>
+              <div>
+                <h4 className="font-semibold text-gray-800">Monitoring/Tools:</h4>
+                <p className="text-gray-700">{resume.skills.major}</p>
+              </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Experience */}
+      {/* ==== Experience ==== */}
       <div>
-        <div className="flex items-center gap-3 mb-3">
-          <BriefcaseBusiness className="w-8 h-8 text-[#123499]" />
-          <h3 className="text-2xl font-semibold text-[#123499]">EXPERIENCE</h3>
+        <div className="flex items-center gap-2 mb-2">
+          <BriefcaseBusiness className="w-6 h-6 sm:w-7 sm:h-7 text-[#123499]" />
+          <h3 className="text-lg sm:text-xl font-bold text-[#123499]">EXPERIENCE</h3>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {resume.experience.map((exp, idx) => (
-            <div key={idx}>
-              <div className="flex justify-between items-start mb-1">
-                <h4 className="text-[18px] font-semibold text-gray-900">
+            <div key={idx} className="border-l-2 border-blue-600 pl-3">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-1">
+                <h4 className="font-semibold text-gray-900 text-sm sm:text-base">
                   {exp.title}
                 </h4>
-                <span className="text-sm text-gray-600">{exp.period}</span>
+                <span className="text-xs text-gray-600">{exp.period}</span>
               </div>
-              <p className="text-sm text-gray-600 mb-2">
+              <p className="text-xs sm:text-sm text-gray-600">
                 {exp.company}, {exp.location}
               </p>
               {exp.environment && (
-                <p className="text-sm text-gray-600 mb-4">
-                  Environment: {exp.environment}
+                <p className="text-xs text-gray-500 italic">
+                  Env: {exp.environment}
                 </p>
               )}
-              <ul className="text-sm text-black space-y-2 list-disc list-inside leading-6">
-                {exp.highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
+              <ul className="mt-2 text-xs sm:text-sm text-gray-700 space-y-1 list-disc list-inside">
+                {exp.highlights.map((h, i) => (
+                  <li key={i}>{h}</li>
                 ))}
               </ul>
             </div>
@@ -174,52 +150,60 @@ const ResumeDetails = ({ resume }) => {
         </div>
       </div>
 
-      {/* Selected Projects */}
+      {/* ==== Projects ==== */}
       <div>
-        <div className="flex items-center gap-3 mb-3">
-          <FolderOpenDot className="w-8 h-8 text-[#123499]" />
-          <h3 className="text-2xl font-semibold text-[#123499]">
+        <div className="flex items-center gap-2 mb-2">
+          <FolderOpenDot className="w-6 h-6 sm:w-7 sm:h-7 text-[#123499]" />
+          <h3 className="text-lg sm:text-xl font-bold text-[#123499]">
             SELECTED PROJECTS
           </h3>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {resume.projects.map((project, idx) => (
-            <div key={idx} className="border border-gray-200 rounded-lg p-4">
-              <h4 className="font-semibold text-gray-900 mb-2">
+            <div
+              key={idx}
+              className="border border-gray-200 rounded-lg p-3 hover:shadow-sm transition-shadow"
+            >
+              <h4 className="font-semibold text-gray-900 text-sm mb-1">
                 {project.name}
               </h4>
-              <p className="text-sm text-gray-600">{project.description}</p>
+              <p className="text-xs text-gray-600 line-clamp-2">
+                {project.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Education & Certifications */}
-      <div className="grid grid-cols-2 gap-8">
+      {/* ==== Education & Certifications ==== */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        {/* Education */}
         <div>
-          <div className="flex items-center gap-3 mb-3">
-            <GraduationCap className="w-9 h-9 text-[#123499]" />
-            <h3 className="text-2xl font-semibold text-[#123499]">EDUCATION</h3>
+          <div className="flex items-center gap-2 mb-2">
+            <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-[#123499]" />
+            <h3 className="text-lg sm:text-xl font-bold text-[#123499]">EDUCATION</h3>
           </div>
-          <div className="border border-gray-200 rounded-lg p-4">
+          <div className="border border-gray-200 rounded-lg p-3 space-y-2">
             {resume.education.map((edu, idx) => (
               <div key={idx}>
-                <h4 className="font-semibold text-gray-900">{edu.degree}</h4>
-                <p className="text-sm text-gray-600">{edu.school}</p>
-                <p className="text-sm text-gray-600">{edu.location}</p>
+                <h4 className="font-semibold text-gray-900 text-sm">{edu.degree}</h4>
+                <p className="text-xs text-gray-600">{edu.school}</p>
+                <p className="text-xs text-gray-500">{edu.location}</p>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Certifications */}
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <Award className="w-9 h-9 text-[#123499]" />
-            <h3 className="text-2xl font-semibold text-[#123499]">
+          <div className="flex items-center gap-2 mb-2">
+            <Award className="w-6 h-6 sm:w-7 sm:h-7 text-[#123499]" />
+            <h3 className="text-lg sm:text-xl font-bold text-[#123499]">
               CERTIFICATIONS
             </h3>
           </div>
-          <div className="border border-gray-200 rounded-lg p-4">
-            <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
+          <div className="border border-gray-200 rounded-lg p-3">
+            <ul className="text-xs sm:text-sm text-gray-700 space-y-1 list-disc list-inside">
               {resume.certifications.map((cert, idx) => (
                 <li key={idx}>{cert}</li>
               ))}
@@ -229,6 +213,4 @@ const ResumeDetails = ({ resume }) => {
       </div>
     </div>
   );
-};
-
-export default ResumeDetails;
+}

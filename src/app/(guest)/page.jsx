@@ -30,6 +30,7 @@ import Link from "next/link";
 import ReviewCard from "@/components/shared/ReviewCard";
 import JobCategoryCard from "@/components/shared/JobCategoryCard";
 import SubscriptionCard from "@/components/shared/SubscriptionCard";
+import ResumeGenerator from "../../../shared/ResumeGenerator";
 
 const recentJobs = [
   {
@@ -179,6 +180,8 @@ export default function Home() {
     load();
   }, []);
 
+  
+
   const jobCategories = [
     { icon: Stethoscope, label: "Healthcare", count: "2.5k jobs" },
     { icon: Code, label: "IT Jobs", count: "5.2k jobs" },
@@ -239,102 +242,108 @@ export default function Home() {
 
   return (
     <main className="w-full bg-white">
-      <section className="py-12 sm:py-20 bg-[#E1F6FF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Left Content */}
-            <div>
-              <p className="text-sm font-semibold text-orange-500 mb-2">
-                AI-Powered Job Matching
-              </p>
-              <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-4 leading-tight text-balance">
-                Land Your Dream Job
-                <br />
-                In <span className="text-blue-600">IT</span> &{" "}
-                <span className="text-orange-500">Healthcare</span>
-              </h1>
-              <p className="text-lg text-gray-600 mb-6 text-balance">
-                Our AI Matches You With The Right Roles And Even Applies On Your
-                Behalf—So You Can Focus On What Matters. More Interviews, Better
-                Opportunities, Faster.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-8 py-3 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white rounded-lg hover:opacity-90 transition font-medium flex items-center justify-center gap-2">
-                  Start Auto Apply <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition font-medium flex items-center justify-center gap-2">
-                  Post A Job
-                </button>
-              </div>
-              <div className="flex flex-wrap gap-6 mt-8 text-sm">
-                <div className="flex items-center gap-2 text-gray-700">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>AI Job Matching</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-700">
-                  <BadgeCheck className="w-5 h-5 text-orange-500" />
-                  <span>Verified Company</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-700">
-                  <Zap className="w-5 h-5 text-purple-500" />
-                  <span>Fast Application</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-700">
-                  <TrendingUp className="w-5 h-5 text-teal-500" />
-                  <span>Career Growth</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Images */}
-            <div>
-              <img
-                src="/groupHome.svg"
-                alt="Banner"
-                className="rounded-lg w-full h-full"
-              />
-            </div>
+     <section className="py-12 sm:py-16 lg:py-20 bg-[#E1F6FF]">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      {/* Left Content */}
+      <div>
+        <p className="text-sm sm:text-base font-semibold text-orange-500 mb-2">
+          AI-Powered Job Matching
+        </p>
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-4 leading-snug sm:leading-tight lg:leading-tight text-balance">
+          Land Your Dream Job
+          <br />
+          In <span className="text-blue-600">IT</span> &{" "}
+          <span className="text-orange-500">Healthcare</span>
+        </h1>
+        <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 text-balance">
+          Our AI Matches You With The Right Roles And Even Applies On Your
+          Behalf—So You Can Focus On What Matters. More Interviews, Better
+          Opportunities, Faster.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <button className="px-6 w-2/3 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white rounded-lg hover:opacity-90 transition font-medium flex items-center justify-center gap-2 text-sm sm:text-base">
+            Start Auto Apply <ArrowRight className="w-4 h-4" />
+          </button>
+          
+        </div>
+        <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8 text-xs sm:text-sm lg:text-base">
+          <div className="flex items-center gap-2 text-gray-700">
+            <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-500" />
+            <span>AI Job Matching</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <BadgeCheck className="w-4 sm:w-5 h-4 sm:h-5 text-orange-500" />
+            <span>Verified Company</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <Zap className="w-4 sm:w-5 h-4 sm:h-5 text-purple-500" />
+            <span>Fast Application</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-700">
+            <TrendingUp className="w-4 sm:w-5 h-4 sm:h-5 text-teal-500" />
+            <span>Career Growth</span>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Right Images */}
+      <div className="w-full flex justify-center lg:justify-end mt-6 lg:mt-0">
+        <img
+          src="/groupHome.svg"
+          alt="Banner"
+          className="rounded-lg w-full max-w-xs sm:max-w-md lg:max-w-lg h-auto"
+        />
+      </div>
+    </div>
+  </div>
+    </section>
+
+
       {/* Search Section below Hero */}
-      <section className="py-6 sm:py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#123499]">
-              Find Your Dream Job Today!
-            </h2>
-            <p className="text-gray-600 mt-2">
-              Connecting Talent with Opportunity: Your Gateway to Career Success
-            </p>
-          </div>
+     <section className="py-6 sm:py-10 lg:py-12">
+  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+      <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-[#123499]">
+        Find Your Dream Job Today!
+      </h2>
+      <p className="text-gray-600 mt-1 sm:mt-2 lg:mt-3 text-sm sm:text-base lg:text-lg">
+        Connecting Talent with Opportunity: Your Gateway to Career Success
+      </p>
+    </div>
 
-          <div className="flex items-center rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-            {/* Input area */}
-            <div className="flex-1 flex items-center bg-blue-50">
-              <input
-                type="text"
-                placeholder="Job Title or Company"
-                className="w-full bg-transparent px-5 py-3 text-gray-700 placeholder-gray-500 outline-none"
-              />
-            </div>
-            {/* Divider + sliders icon */}
-            <button
-              type="button"
-              onClick={() => setFiltersOpen(true)}
-              aria-label="Open Filters"
-              className="hidden sm:flex items-center px-4 border-l border-gray-200 text-gray-600 hover:bg-gray-50"
-            >
-              <SlidersHorizontal className="w-5 h-5" />
-            </button>
-            {/* Search button */}
-            <button className="flex items-center gap-2 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white px-6 sm:px-8 py-3 font-medium">
-              <Search className="w-4 h-4" />
-              Search Job
-            </button>
-          </div>
-        </div>
+    <div className="flex flex-col sm:flex-row items-center rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+      {/* Input area */}
+      <div className="flex-1 flex items-center bg-blue-50 w-full">
+        <input
+          type="text"
+          placeholder="Job Title or Company"
+          className="w-full bg-transparent px-3 sm:px-4 lg:px-5 py-2 sm:py-2.5 lg:py-3 text-gray-700 placeholder-gray-500 outline-none text-sm sm:text-base lg:text-lg"
+        />
+      </div>
+
+      {/* Divider + sliders icon */}
+      <button
+        type="button"
+        onClick={() => setFiltersOpen(true)}
+        aria-label="Open Filters"
+        className="hidden sm:flex items-center px-3 sm:px-4 border-t sm:border-t-0 sm:border-l border-gray-200 text-gray-600 hover:bg-gray-50"
+      >
+        <SlidersHorizontal className="w-4 sm:w-5 lg:w-5 h-4 sm:h-5 lg:h-5" />
+      </button>
+
+      {/* Search button */}
+      <button className="flex items-center gap-2 bg-gradient-to-r from-[#123499] to-[#2A57DE] text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 font-medium text-sm sm:text-base lg:text-lg w-full sm:w-auto justify-center">
+        <Search className="w-4 sm:w-4 lg:w-5 h-4 sm:h-4 lg:h-5" />
+        Search Job
+      </button>
+    </div>
+  </div>
       </section>
+
+
+
+
       {/* AI Banner Carousel below Hero */}
       <section className="py-6 sm:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -573,7 +582,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      +{/* Recent Job Post Section */}
+      {/* Recent Job Post Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-3 text-balance">
@@ -756,58 +765,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
       {/* Resume Score Generator Section */}
-<section className="py-12 max-w-7xl px-4 mb-14 rounded-xl mx-auto sm:py-20 bg-gradient-to-r from-[#123499] to-[#2A57DE]">
-  <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
-    <div className="text-center mb-8">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 text-balance">
-        Resume Score Generator
-      </h2>
-      <p className="text-blue-100 text-balance">
-        Choose The Job Title You Are Targeting
-      </p>
-      <p className="text-blue-200 text-sm mt-1">
-        This Helps Us Analyze Your Resume Against Industry-Specific Requirements
-      </p>
-    </div>
+      <ResumeGenerator></ResumeGenerator>
 
-    <div className="bg-blue-600 bg-opacity-40 rounded-2xl p-8 space-y-6 border border-blue-400 border-opacity-50">
-      {/* Job Title Selector */}
-      <div>
-        <select className="w-full px-4 py-3 rounded-lg border border-blue-300 bg-blue-500 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent">
-          <option value="Software Developer">Software Developer</option>
-          <option value="Product Manager">Product Manager</option>
-          <option value="Data Scientist">Data Scientist</option>
-          <option value="UX Designer">UX Designer</option>
-          <option value="DevOps Engineer">DevOps Engineer</option>
-          <option value="Full Stack Engineer">Full Stack Engineer</option>
-        </select>
-      </div>
 
-      {/* File Upload Area */}
-      <div className="border-2 border-dashed border-blue-300 rounded-xl p-8 text-center hover:border-white transition cursor-pointer">
-        <div className="flex flex-col items-center gap-3">
-          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-          </svg>
-          <div>
-            <p className="text-white font-semibold">
-              Drop Your Resume Here Or Click To Browse
-            </p>
-            <p className="text-blue-200 text-sm mt-1">
-              Supported format: PDF, DOCX
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Analyze Button */}
-      <button className="w-full px-6 py-3 bg-blue-500 border border-blue-300 text-white rounded-lg hover:bg-blue-400 transition font-semibold">
-        Analyze Resume
-      </button>
-    </div>
-  </div>
-</section>
       {/* How it works at Jobarman */}
       <section className="py-16 sm:py-24 bg-[#FFF6F6] mb-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -882,7 +845,7 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-[64px] sm:text-4xl font-semibold text-[#123499] mb-4 text-balance">
+            <h2 className="text-4xl font-semibold text-[#123499] mb-4 text-balance">
               Subscription Plan
             </h2>
           </div>
