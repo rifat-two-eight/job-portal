@@ -11,26 +11,26 @@ export default function SubscriptionCard({ plan }) {
       : "ring-yellow-300";
 
   return (
-    <div className="relative flex flex-col rounded-xl border border-gray-200 bg-white shadow-sm">
+    <div className="relative flex flex-col rounded-xl border border-gray-200 bg-white shadow-sm w-full max-w-xs mx-auto sm:max-w-sm md:max-w-md lg:max-w-lg">
       {/* Top Badge Icon */}
       <div
-        className={`absolute -top-5 left-1/2  transform -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md ring-2 ${ringColor} flex items-center justify-center`}
+        className={`absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white shadow-md ring-2 ${ringColor} flex items-center justify-center`}
       >
-        <Icon className="w-6 h-6 text-[#123499]" />
+        <Icon className="w-5 h-5 sm:w-5.5 md:w-6 text-[#123499]" />
       </div>
 
       {/* Header with price */}
       <div
         className={`bg-gradient-to-r ${
           plan.highlighted
-            ? "from-[#1D4ED8] to-[#1E3A8A]" // Highlighted plan
-            : "from-[#3B82F6] to-[#2563EB]" // Normal plan
-        } text-white px-6 pt-8 pb-6 text-center rounded-t-xl`}
+            ? "from-[#1D4ED8] to-[#1E3A8A]"
+            : "from-[#3B82F6] to-[#2563EB]"
+        } text-white px-4 pt-6 pb-4 sm:px-5 sm:pt-7 sm:pb-5 md:px-6 md:pt-8 md:pb-6 text-center rounded-t-xl`}
       >
-        <div className="flex flex-col items-center gap-1 sm:gap-2">
-          <div className="flex items-baseline gap-2">
-            <span className="text-4xl sm:text-5xl font-bold">{plan.price}</span>
-            <span className="text-sm opacity-90">
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex items-baseline gap-1 sm:gap-1.5 md:gap-2">
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">{plan.price}</span>
+            <span className="text-xs sm:text-sm opacity-90">
               {plan.name === "Free"
                 ? "/ Free Plan (Starter)"
                 : plan.period
@@ -42,21 +42,21 @@ export default function SubscriptionCard({ plan }) {
       </div>
 
       {/* Features List */}
-      <div className="px-6 sm:px-8 py-6 flex-1">
-        <ul className="space-y-3">
+      <div className="px-4 py-4 sm:px-5 sm:py-5 md:px-6 md:py-6 flex-1">
+        <ul className="space-y-2 sm:space-y-2.5 md:space-y-3">
           {plan.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-              <span className="text-sm text-gray-700">{feature}</span>
+            <li key={i} className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
+              <Check className="w-4 h-4 sm:w-4.5 md:w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-gray-700">{feature}</span>
             </li>
           ))}
         </ul>
       </div>
 
       {/* Footer CTA */}
-      <div className="px-6 sm:px-8 pb-6 pt-3 bg-[#EEF6FB]">
+      <div className="px-4 pb-4 pt-2 sm:px-5 sm:pb-5 sm:pt-2.5 md:px-6 md:pb-6 md:pt-3 bg-[#EEF6FB] rounded-b-xl">
         <button
-          className={`w-full py-3 rounded-md font-semibold transition-colors ${
+          className={`w-full py-2.5 text-sm sm:py-2.5 sm:text-base md:py-3 md:text-base rounded-md font-semibold transition-colors ${
             plan.name === "Free"
               ? "bg-blue-50 text-[#123499] border border-blue-300 hover:bg-blue-100"
               : "bg-[#123499] text-white hover:bg-blue-700"
